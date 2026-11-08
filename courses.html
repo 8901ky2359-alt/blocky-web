@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>講座一覧 | Serendipity〜神様からのお贈り物〜</title>
   <meta name="description" content="Serendipity 発酵・腸活スクールの講座一覧。甘酒・白みそ・豆腐・キムチ・ぬか漬けなど単発講座、継続レッスン、養成講座、季節限定講座。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Serendipity〜神様からのお贈り物〜">
+  <meta property="og:title" content="講座一覧 | Serendipity〜神様からのお贈り物〜">
+  <meta property="og:description" content="Serendipity 発酵・腸活スクールの講座一覧。甘酒・白みそ・豆腐・キムチ・ぬか漬けなど単発講座、継続レッスン、養成講座、季節限定講座。">
+  <meta property="og:url" content="https://serendipity-2ca.pages.dev/courses.html">
+  <meta property="og:image" content="https://serendipity-2ca.pages.dev/images/hero/personal.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -96,11 +105,11 @@
       margin: 0 auto; max-width: 680px;
       box-shadow: 0 1px 4px rgba(0,0,0,.04);
     }
-    .sort-bar-item { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 18px; }
+    .sort-bar-item { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 0 18px; }
     .sort-bar-item + .sort-bar-item { border-left: 1px solid var(--border); }
     .sort-bar-lbl { font-size: .65rem; font-weight: 700; color: var(--gray2); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
     .sort-bar-sel {
-      flex: 1; appearance: none; -webkit-appearance: none;
+      flex: 1; min-width: 0; appearance: none; -webkit-appearance: none;
       border: none; background: transparent;
       font: 500 .88rem/1 'Noto Sans JP',sans-serif; color: var(--dark);
       cursor: pointer; outline: none; padding: 15px 24px 15px 0;
@@ -172,6 +181,7 @@
       .hdr-nav { display: none; }
       .hamburger { display: flex; }
       .courses-grid { grid-template-columns: 1fr; gap: 12px; }
+      .sort-bar-item { padding: 0 12px; gap: 8px; }
       .course-card { flex-direction: row; align-items: stretch; }
       .card-img { width: 33%; flex-shrink: 0; aspect-ratio: unset; min-height: 130px; }
       .card-body { flex: 1; padding: 12px 12px; gap: 6px; }
@@ -376,7 +386,7 @@
 <!-- FIXED BOTTOM BAR -->
 <div class="fixed-bar">
   <a href="index.html" class="fixed-bar-back">← 戻る</a>
-  <a href="apply.html" class="fixed-bar-apply">✉️ お申し込みフォームへ</a>
+  <a href="apply.html" class="fixed-bar-apply">✉️ お申し込み</a>
 </div>
 
 <script>
