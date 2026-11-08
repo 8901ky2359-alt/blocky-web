@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>藤本ちさとの想いと実績 | Serendipity〜神様からのお贈り物〜</title>
+  <meta name="description" content="神・腸活マイスター 藤本ちさと。講師歴21年・累計1,300名以上。発酵・腸活との出会い、実績、資格、受講生の声をご紹介。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange:  #e07b30;
+      --orange2: #c45f18;
+      --cream:   #faf8f5;
+      --white:   #ffffff;
+      --dark:    #222222;
+      --gray:    #666666;
+      --gray2:   #999999;
+      --border:  #e8e0d6;
+      --line:    #06c755;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 64px;
+    }
+
+    /* ── HEADER ── */
+    .hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+    }
+    .hdr-brand { text-decoration: none; display: flex; flex-direction: column; }
+    .hdr-brand-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--orange); letter-spacing: .04em; line-height: 1;
+    }
+    .hdr-brand-sub { font-size: .65rem; color: var(--gray2); letter-spacing: .04em; margin-top: 2px; }
+    .hdr-nav { display: flex; align-items: center; gap: 28px; }
+    .hdr-nav a {
+      font-size: .82rem; font-weight: 500; color: var(--dark);
+      text-decoration: none; transition: color .15s;
+    }
+    .hdr-nav a:hover { color: var(--orange); }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 36px; height: 36px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); transition: all .25s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-nav-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 190;
+    }
+    .mobile-nav-overlay.open { display: block; }
+    .mobile-nav-panel {
+      position: fixed; top: 0; right: -100%; width: 75%; max-width: 280px;
+      height: 100%; background: var(--white); z-index: 195;
+      padding: 80px 28px 32px; transition: right .3s;
+      border-left: 1px solid var(--border); overflow-y: auto;
+    }
+    .mobile-nav-panel.open { right: 0; }
+    .mobile-nav-panel a {
+      display: block; padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font: 500 1rem/1 'Noto Sans JP',sans-serif;
+      color: var(--dark); text-decoration: none;
+    }
+    .mobile-nav-panel a:hover { color: var(--orange); }
+    .mobile-nav-panel .mnav-cta {
+      display: block; margin-top: 24px;
+      background: var(--orange); color: #fff;
+      padding: 14px; text-align: center; font-weight: 700;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 64px;
+      background: linear-gradient(120deg, #fff8f2 0%, #faf8f5 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 48px 36px;
+      position: sticky; top: 64px; z-index: 100;
+    }
+    .page-hero-en { font-size: .72rem; letter-spacing: .22em; color: var(--orange); text-transform: uppercase; margin-bottom: 8px; }
+    .page-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--dark);
+    }
+
+    /* ── SECTION ── */
+    .sec { padding: 64px 48px; }
+    .sec.bg-wh { background: var(--white); }
+    .sec-hd { margin-bottom: 32px; }
+    .sec-hd.center { text-align: center; }
+    .sec-ttl {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 6px;
+    }
+
+    /* ── PROFILE ── */
+    .profile-inner { max-width: 680px; margin: 0 auto; }
+    .profile-body { display: flex; flex-direction: column; gap: 18px; padding-top: 8px; }
+    .profile-name-en { font-size: .72rem; letter-spacing: .2em; color: var(--orange); text-transform: uppercase; margin-bottom: 4px; }
+    .profile-name { font-family: 'Noto Serif JP',serif; font-size: 1.8rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .profile-title {
+      display: inline-block; background: #fff4ec; color: var(--orange);
+      font: 700 .82rem/1 inherit; padding: 5px 14px; border-radius: 0;
+    }
+    .profile-p { font-size: .9rem; color: var(--gray); line-height: 2.0; }
+    .profile-stat {
+      background: var(--cream); padding: 18px 22px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .profile-stat-num { font-family: 'Noto Serif JP',serif; font-size: 2rem; font-weight: 700; color: var(--orange); white-space: nowrap; }
+    .profile-stat-txt { font-size: .84rem; color: var(--gray); line-height: 1.7; }
+
+    /* ── VOICE ── */
+    .voice-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .voice-card {
+      background: var(--white); padding: 24px 20px;
+      border: 1px solid var(--border);
+    }
+    .voice-stars { color: var(--orange); font-size: 1rem; margin-bottom: 10px; letter-spacing: 2px; }
+    .voice-text { font-size: .86rem; color: var(--dark); line-height: 1.85; margin-bottom: 14px; }
+    .voice-who { font-size: .78rem; color: var(--gray2); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      display: flex; align-items: center; gap: 14px;
+      padding: 20px 8px; cursor: pointer;
+      font: 700 .96rem/1.5 inherit; color: var(--dark); user-select: none;
+    }
+    .faq-q-lbl { color: var(--orange); font-family: 'Noto Serif JP',serif; font-size: 1rem; flex-shrink: 0; }
+    .faq-arr { margin-left: auto; color: var(--gray2); transition: transform .2s; font-size: .8rem; }
+    .faq-item.open .faq-arr { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 8px 20px 34px; font-size: .9rem; color: var(--gray); line-height: 1.9; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── PAGE NAV ── */
+    .page-nav {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; padding: 40px 24px 48px;
+      background: var(--white); border-top: 1px solid var(--border);
+    }
+    .page-nav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 14px 28px; border: 2px solid var(--orange);
+      color: var(--orange); font: 700 .9rem/1 inherit;
+      text-decoration: none; border-radius: 0; transition: all .15s;
+    }
+    .page-nav-btn:hover { background: var(--orange); color: #fff; }
+    .page-nav-btn.primary { background: var(--orange); color: #fff; }
+    .page-nav-btn.primary:hover { background: var(--orange2); }
+
+    /* ── FIXED BOTTOM BAR ── */
+    .fixed-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      display: flex; background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -2px 16px rgba(0,0,0,.08);
+    }
+    .fixed-bar-back {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: var(--white); color: var(--dark); padding: 26px 20px;
+      font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s;
+      border-right: 1px solid var(--border);
+    }
+    .fixed-bar-back:hover { background: var(--cream); }
+    .fixed-bar-apply {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--orange); color: #fff; padding: 26px 20px;
+      font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s;
+    }
+    .fixed-bar-apply:hover { background: var(--orange2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.4);
+      text-align: center; padding: 40px 28px;
+      font-size: .8rem; line-height: 2.1;
+    }
+    footer .f-brand { font-family: 'Noto Serif JP',serif; color: var(--orange); font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 6px; }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+    .powered { margin-top: 14px; font-size: .68rem; color: rgba(255,255,255,.18); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hdr { padding: 0 20px; }
+      .hdr-nav { gap: 16px; }
+      .sec { padding: 52px 20px; }
+      .voice-grid { grid-template-columns: 1fr; }
+      .page-hero { padding: 32px 20px 28px; }
+    }
+    /* ── PROFILE STATS ── */
+    .profile-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+    }
+    .pstat {
+      background: #fff4ec; padding: 18px 10px; text-align: center;
+    }
+    .pstat-num {
+      font-family: 'Noto Serif JP',serif; font-size: 1.45rem; font-weight: 700;
+      color: var(--orange); line-height: 1.2; margin-bottom: 5px;
+    }
+    .pstat-lbl { font-size: .7rem; color: var(--gray); line-height: 1.55; }
+    .pstat-lbl small { display: block; color: var(--gray2); font-size: .62rem; margin-top: 2px; }
+
+    /* ── PROFILE STORY CARDS ── */
+    .profile-story {
+      border-left: 3px solid var(--orange); padding: 16px 18px;
+      background: var(--cream); display: flex; flex-direction: column; gap: 6px;
+    }
+    .profile-story-ttl {
+      font: 700 .88rem/1 'Noto Sans JP',sans-serif; color: var(--orange); margin-bottom: 4px;
+    }
+    .profile-emph { font-weight: 700 !important; color: var(--dark) !important; }
+
+    /* ── PROFILE CERTS ── */
+    .profile-certs { background: #fff8f2; padding: 20px 22px; }
+    .profile-certs-ttl {
+      font: 700 .88rem/1 'Noto Sans JP',sans-serif; color: var(--orange); margin-bottom: 12px;
+    }
+    .profile-certs-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cert-tag {
+      display: inline-block; background: var(--white);
+      border: 1px solid var(--border); color: var(--gray);
+      font-size: .78rem; padding: 5px 12px;
+    }
+
+    /* ── PROFILE MESSAGE ── */
+    .profile-msg {
+      background: linear-gradient(135deg, #fff8f2 0%, #fdf7e8 100%);
+      padding: 28px 24px; text-align: center; border: 1px solid var(--border);
+    }
+    .profile-msg-quote {
+      font-size: .88rem; color: var(--gray); line-height: 2.1; margin-bottom: 18px;
+    }
+    .profile-msg-main {
+      font-family: 'Noto Serif JP',serif; font-size: 1.15rem; font-weight: 700;
+      color: var(--orange); background: #fff4ec; padding: 12px 20px; display: inline-block;
+    }
+
+    @media (max-width: 560px) {
+      .hdr-nav { display: none; }
+      .hamburger { display: flex; }
+      .profile-stats { grid-template-columns: repeat(2,1fr); }
+      .page-nav { flex-direction: column; align-items: stretch; padding: 28px 20px 36px; }
+      .page-nav-btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <a href="index.html" class="hdr-brand">
+    <span class="hdr-brand-main">Serendipity</span>
+    <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="about.html" class="active">はじめに</a>
+    <a href="courses.html">講座一覧</a>
+    <a href="apply.html">お申し込み</a>
+    <a href="about.html#faq">よくある質問</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- モバイルナビ -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<div class="mobile-nav-panel" id="mobileNav">
+  <a href="about.html">はじめに</a>
+  <a href="courses.html">講座一覧</a>
+  <a href="apply.html">お申し込み</a>
+  <a href="about.html#faq">よくある質問</a>
+  <a href="apply.html" class="mnav-cta">お申し込みはこちら</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-en">About Chisato Fujimoto</div>
+  <h1>藤本ちさとの想いと実績</h1>
+  <p style="margin-top:8px;font-size:.88rem;color:var(--gray);">プロフィール・受講生の声・よくある質問</p>
+</div>
+
+<!-- PROFILE -->
+<section class="sec bg-wh" id="profile">
+  <div class="sec-hd center"><h2 class="sec-ttl">プロフィール</h2></div>
+  <div class="profile-inner">
+    <div class="profile-body">
+
+      <!-- 名前・肩書き -->
+      <div>
+        <div class="profile-name-en">Chisato Fujimoto</div>
+        <div class="profile-name">藤本 ちさと</div>
+        <span class="profile-title">✨ 神・腸活マイスター</span>
+      </div>
+
+      <!-- 実績数字 -->
+      <div class="profile-stats">
+        <div class="pstat">
+          <div class="pstat-num">21年</div>
+          <div class="pstat-lbl">講師歴<small>2003年〜現在</small></div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">1,300名<span style="font-size:.8rem">以上</span></div>
+          <div class="pstat-lbl">累計参加者</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">20名<span style="font-size:.8rem">以上</span></div>
+          <div class="pstat-lbl">体質改善<br>サポート実績</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">30年</div>
+          <div class="pstat-lbl">味噌仕込み歴</div>
+        </div>
+      </div>
+
+      <!-- ストーリー：発酵との出会い -->
+      <div class="profile-story">
+        <div class="profile-story-ttl">🌸 発酵との出会い</div>
+        <p class="profile-p">私が発酵食品と出会ったのは、今から30年前。ママ友から教わった味噌作りがきっかけでした。大豆と麹と塩が、時間をかけて美味しい味噌へと変化していく様子に、まるで魔法のような感動を覚えたのを今でも覚えています。</p>
+        <p class="profile-p">「菌は生きている。だから対話することが大切」——その言葉が、今の活動のすべての原点になっています。</p>
+      </div>
+
+      <!-- ストーリー：腸活への目覚め -->
+      <div class="profile-story">
+        <div class="profile-story-ttl">💡 腸活への目覚め</div>
+        <p class="profile-p">大切な娘が薬の影響で重い不調を抱えた日々。どうにかして元気になってほしい、その一心でたどり着いたのが「腸」でした。食事や生活を見直し、腸を整える中で、少しずつ変わっていく娘の姿を目の当たりにして気づきました——腸は体だけでなく、心や人生までも支えていることを。</p>
+        <p class="profile-p profile-emph">これが、藤本ちさとの腸活の原点です。</p>
+      </div>
+
+      <!-- ストーリー：Serendipityの由来 -->
+      <div class="profile-story">
+        <div class="profile-story-ttl">🌿 Serendipity〜神様からのお贈り物〜</div>
+        <p class="profile-p">自分の経験を多くの方に伝えたいと思い、講師活動を始めて21年。今では累計1,300名以上の方に発酵食の素晴らしさをお伝えし、20名以上の方の体質改善をサポートさせていただきました。</p>
+        <p class="profile-p">「Serendipity（セレンディピティ）」とは、思いがけない幸運な出会いという意味。発酵食との出会いが、皆さまにとって人生を変えるきっかけとなりますように——そんな想いを込めて活動しています。</p>
+      </div>
+
+      <!-- 保有資格 -->
+      <div class="profile-certs">
+        <div class="profile-certs-ttl">🎓 保有資格</div>
+        <div class="profile-certs-grid">
+          <span class="cert-tag">野菜ソムリエ</span>
+          <span class="cert-tag">みそソムリエ</span>
+          <span class="cert-tag">発酵食品マイスター</span>
+          <span class="cert-tag">心理カウンセラー</span>
+          <span class="cert-tag">メンタルトレーナー</span>
+          <span class="cert-tag">数秘セラピスト</span>
+          <span class="cert-tag">マイライフコーディネーター</span>
+        </div>
+      </div>
+
+      <!-- 想い・メッセージ -->
+      <div class="profile-msg">
+        <p class="profile-msg-quote">「なんとなく不調」「いつも疲れやすい」<br>そんな大人女性の悩みに、腸活・発酵食という形で寄り添いたい。<br>体の中から整えて、心も軽やかに。あなた本来の輝きを取り戻すお手伝いをさせてください。</p>
+        <div class="profile-msg-main">腸内環境を整えて、人生まるごと開放！</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="sec" id="voice">
+  <div class="sec-hd center"><h2 class="sec-ttl">受講生の声</h2></div>
+  <div class="voice-grid">
+    <div class="voice-card">
+      <div class="voice-stars">★★★★★</div>
+      <p class="voice-text">甘酒講座を受けてから毎朝飲むようになりました。お腹の調子がよくなり、肌もきれいになってきた気がします。ランチも美味しくて大満足でした！</p>
+      <div class="voice-who">40代女性 / 甘酒講座受講</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-stars">★★★★★</div>
+      <p class="voice-text">白みそ講座は感動でした。自分で作ったみそがこんなに美味しいとは。藤本先生の丁寧な説明でわかりやすく、初めてでも安心して参加できました。</p>
+      <div class="voice-who">50代女性 / 白みそ講座受講</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-stars">★★★★★</div>
+      <p class="voice-text">パーソナルレッスンで6ヶ月サポートしていただきました。体質が変わったのを実感しています。先生の温かいサポートに本当に感謝しています。</p>
+      <div class="voice-who">50代女性 / パーソナルレッスン受講</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec bg-wh" id="faq">
+  <div class="sec-hd center"><h2 class="sec-ttl">よくある質問</h2></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-lbl">Q</span>初めてでも参加できますか？<span class="faq-arr">▼</span></div>
+      <div class="faq-a">はい、もちろんです。発酵食品が初めての方、料理が苦手な方も大歓迎です。わかりやすく丁寧にお伝えしますので、安心してご参加ください。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-lbl">Q</span>オンライン講座はどうやって参加しますか？<span class="faq-arr">▼</span></div>
+      <div class="faq-a">Zoomを使ったオンライン形式で行います。事前に材料をご用意いただくか、キットを郵送してお届けします。スマートフォン・パソコンどちらでも参加できます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-lbl">Q</span>申し込みフォームの操作が不安です。<span class="faq-arr">▼</span></div>
+      <div class="faq-a">フォームが難しいと感じた場合は、LINEからご連絡いただければLINEでのお申し込みも承っています。「講座に申し込みたい」とメッセージをいただくだけで大丈夫です。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-lbl">Q</span>どの講座から始めればよいですか？<span class="faq-arr">▼</span></div>
+      <div class="faq-a">迷った方は「甘酒講座（¥4,000）」がおすすめです。発酵の基本がわかり、初めての方にも体験しやすいと人気があります。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-lbl">Q</span>キャンセルはできますか？<span class="faq-arr">▼</span></div>
+      <div class="faq-a">はい、可能です。開催日の3日前までにご連絡ください。詳細はお申し込み後にご案内します。</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE NAV -->
+<div class="page-nav">
+  <a href="courses.html" class="page-nav-btn">🌿 講座一覧を見る</a>
+  <a href="apply.html" class="page-nav-btn primary">✉️ お申し込みはこちら</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-brand">Serendipity〜神様からのお贈り物〜</span>
+  神・腸活マイスター 藤本ちさと<br>
+  <a href="https://www.instagram.com/chokatsu64/" target="_blank">Instagram @chokatsu64</a>
+  <div class="powered">Web Design by <a href="#">Blocky Web制作</a></div>
+</footer>
+
+<!-- FIXED BOTTOM BAR -->
+<div class="fixed-bar">
+  <a href="index.html" class="fixed-bar-back">← 戻る</a>
+  <a href="courses.html" class="fixed-bar-apply">🌿 講座一覧</a>
+</div>
+
+<script>
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      q.closest('.faq-item').classList.toggle('open');
+    });
+  });
+
+  // Hamburger
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  var mobileOverlay = document.getElementById('mobileOverlay');
+  function openNav() {
+    hamburger.classList.add('open');
+    mobileNav.classList.add('open');
+    mobileOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  mobileOverlay.addEventListener('click', closeNav);
+  document.querySelectorAll('.mobile-nav-panel a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+</script>
+</body>
+</html>

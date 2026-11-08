@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【期間限定】お味噌仕込み講座 | Serendipity〜神様からのお贈り物〜</title>
+  <meta name="description" content="菌と向き合いながら仕込む、自分だけの味噌。1月〜3月限定開催。2kg仕込み・ランチ付き・約3時間半。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --orange: #e07b30; --orange2: #c45f18; --cream: #faf8f5; --white: #ffffff; --dark: #222222; --gray: #666666; --gray2: #999999; --border: #e8e0d6; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: var(--cream); color: var(--dark); font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; padding-bottom: 64px; }
+    .hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--white); border-bottom: 1px solid var(--border); height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; }
+    .hdr-brand { text-decoration: none; display: flex; flex-direction: column; }
+    .hdr-brand-main { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; font-weight: 700; color: var(--orange); letter-spacing: .04em; line-height: 1; }
+    .hdr-brand-sub { font-size: .65rem; color: var(--gray2); letter-spacing: .04em; margin-top: 2px; }
+    .hdr-nav { display: flex; align-items: center; gap: 28px; }
+    .hdr-nav a { font-size: .82rem; font-weight: 500; color: var(--dark); text-decoration: none; transition: color .15s; }
+    .hdr-nav a:hover { color: var(--orange); }
+    .hero { margin-top: 64px; position: relative; overflow: hidden; min-height: 380px; display: flex; align-items: flex-end; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .hero-ov { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,5,0,.78) 0%, rgba(10,5,0,.5) 55%, rgba(10,5,0,.15) 100%); }
+    .hero-body { position: relative; z-index: 2; padding: 44px 48px 56px; max-width: 640px; }
+    .hero-badge { display: inline-block; background: #8a6020; color: #fff; font: 700 .72rem/1 inherit; letter-spacing: .05em; padding: 4px 12px; border-radius: 4px; margin-bottom: 14px; }
+    .hero h1 { font-family: 'Noto Serif JP', serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 12px; }
+    .hero-catch { font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.9; margin-bottom: 18px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.18); color: rgba(255,255,255,.9); font-size: .78rem; padding: 5px 12px; border-radius: 100px; }
+    .ls { padding: 52px 48px 80px; }
+    .ls-inner { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+    .sec-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .sec-ttl::before { content: ''; display: block; width: 4px; height: 1.2em; background: var(--orange); border-radius: 2px; flex-shrink: 0; }
+    .info-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .info-table th, .info-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .info-table th { width: 30%; color: var(--gray); font-weight: 500; white-space: nowrap; }
+    .info-table td { font-weight: 500; }
+    .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
+    .price-val { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
+    .price-note { font-size: .8rem; color: var(--gray2); margin-top: 4px; }
+    .box-orange { background: #fff4ec; border-radius: 8px; padding: 24px 28px; }
+    .box-white { background: var(--white); border-radius: 8px; padding: 24px 28px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .box-season { background: #fff8e6; border-radius: 8px; padding: 20px 24px; border-left: 4px solid #8a6020; }
+    .box-season-ttl { font-weight: 700; font-size: .9rem; color: #8a6020; margin-bottom: 10px; }
+    .box-season p { font-size: .88rem; color: var(--gray); line-height: 1.85; }
+    .box-season ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .box-season ul li { font-size: .88rem; color: var(--gray); padding-left: 14px; position: relative; }
+    .box-season ul li::before { content: '・'; position: absolute; left: 0; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .9rem; }
+    .check-list li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .feat-list li { font-size: .9rem; padding-left: 2px; }
+    .timeline { display: flex; flex-direction: column; gap: 24px; }
+    .tl-item { display: flex; gap: 16px; align-items: flex-start; }
+    .tl-num { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; font: 700 .88rem/1 inherit; flex-shrink: 0; margin-top: 2px; }
+    .tl-title { font-weight: 700; font-size: .95rem; margin-bottom: 4px; }
+    .tl-desc { font-size: .88rem; color: var(--gray); line-height: 1.75; }
+    .voice-block { border-left: 3px solid var(--orange); padding: 16px 20px; background: var(--white); border-radius: 0 8px 8px 0; box-shadow: 0 1px 6px rgba(0,0,0,.05); margin-bottom: 16px; }
+    .voice-block:last-child { margin-bottom: 0; }
+    .voice-text { font-size: .9rem; color: var(--dark); line-height: 1.85; margin-bottom: 8px; }
+    .voice-who { font-size: .78rem; color: var(--gray2); }
+    .apply-wrap { text-align: center; background: var(--white); border-radius: 12px; padding: 40px 32px; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .apply-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .apply-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 17px 44px; border-radius: 980px; font: 700 1.05rem/1 inherit; text-decoration: none; box-shadow: 0 4px 20px rgba(224,123,48,.4); transition: transform .2s, box-shadow .2s; }
+    .apply-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(224,123,48,.45); }
+    .apply-note { margin-top: 14px; font-size: .84rem; color: var(--gray); }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: .84rem; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+    .back-link:hover { color: var(--orange); border-color: var(--orange); }
+    footer { background: var(--dark); color: rgba(255,255,255,.4); text-align: center; padding: 40px 28px; font-size: .8rem; line-height: 2.1; }
+    footer .f-brand { font-family: 'Noto Serif JP', serif; color: var(--orange); font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 6px; }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+    .powered { margin-top: 14px; font-size: .68rem; color: rgba(255,255,255,.18); }
+    @media (max-width: 900px) { .hdr { padding: 0 20px; } .hdr-nav { gap: 16px; } .hdr-nav a { font-size: .76rem; } .hero-body { padding: 36px 24px 48px; } .ls { padding: 40px 20px 60px; } }
+    @media (max-width: 560px) { .hdr-nav { display: none; } .hero h1 { font-size: 1.5rem; } }
+
+    /* ── LESSON FIXED BAR ── */
+    .lesson-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; display: flex; background: #fff; border-top: 1px solid var(--border); box-shadow: 0 -2px 16px rgba(0,0,0,.08); }
+    .lesson-bar-back { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: #fff; color: var(--dark); padding: 16px 12px; font: 500 .88rem/1 'Noto Sans JP',sans-serif; text-decoration: none; border-right: 1px solid var(--border); transition: background .15s; }
+    .lesson-bar-back:hover { background: var(--cream); }
+    .lesson-bar-apply { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--orange); color: #fff; padding: 16px 20px; font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s; }
+    .lesson-bar-apply:hover { background: var(--orange2); }
+  </style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="../index.html" class="hdr-brand">
+    <span class="hdr-brand-main">Serendipity</span>
+    <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="../index.html#courses">講座一覧</a>
+    <a href="../index.html#profile">プロフィール</a>
+    <a href="../index.html#voice">受講生の声</a>
+    <a href="../index.html#faq">よくある質問</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="../images/gentei.omiso" alt="お味噌仕込み講座"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-body">
+    <span class="hero-badge">🌸 季節限定講座</span>
+    <h1>【期間限定】<br>お味噌仕込み講座</h1>
+    <p class="hero-catch">菌と向き合いながら仕込む、自分だけの味噌。<br>時間とともに育つ"本物の発酵"を体験。</p>
+    <div class="hero-chips">
+      <span class="hero-chip">⏰ 約3時間半</span>
+      <span class="hero-chip">📅 1月〜3月限定</span>
+      <span class="hero-chip">🍽️ ランチ付き</span>
+      <span class="hero-chip">💻 オンライン／対面可</span>
+    </div>
+  </div>
+</section>
+
+<div class="ls">
+  <div class="ls-inner">
+
+    <a href="../index.html#courses" class="back-link">← 講座一覧に戻る</a>
+
+    <div>
+      <h2 class="sec-ttl">開催情報</h2>
+      <table class="info-table">
+        <tr><th>料金</th><td><span class="price-val">2kg仕込み</span><p class="price-note">※料金は現在調整中。原材料高騰のため後日ご案内いたします。</p></td></tr>
+        <tr><th>所要時間</th><td>約3時間半</td></tr>
+        <tr><th>含まれるもの</th><td>材料費・ランチ・レシピ資料・手作り味噌 2kg（お持ち帰り）</td></tr>
+        <tr><th>持ち物</th><td>エプロン・手拭きタオル・筆記用具・持ち帰り容器</td></tr>
+        <tr><th>開催場所</th><td>講師自宅（お申し込み後に詳細をお知らせします）</td></tr>
+        <tr><th>オンライン</th><td>オンライン／対面 可能</td></tr>
+        <tr><th>開催期間</th><td>1月第4週〜3月第1週限定（味噌仕込みに最適な時期）</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">申込み受付期間</h2>
+      <div class="box-season">
+        <p class="box-season-ttl">📩 受付スケジュール</p>
+        <ul>
+          <li>第一回（早期特典付き）：11月1日〜10日</li>
+          <li>第二回：11月10日〜30日</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">こんな方におすすめ</h2>
+      <div class="box-orange">
+        <ul class="check-list">
+          <li>味噌を一から手作りしてみたい方</li>
+          <li>市販の味噌では物足りない方</li>
+          <li>発酵食品を日常に取り入れたい方</li>
+          <li>腸内環境を整えたい方</li>
+          <li>家族に安心・安全な食を届けたい方</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">学べること・持ち帰れるもの</h2>
+      <div class="box-white">
+        <ul class="feat-list">
+          <li>🥣 味噌の基本的な仕込み技術</li>
+          <li>🦠 麹と大豆の扱い方</li>
+          <li>🔬 発酵を成功させる温度・環境管理</li>
+          <li>💡 熟成期間と保存方法</li>
+          <li>🎁 手作り味噌 2kg（お持ち帰り）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">当日の流れ</h2>
+      <div class="box-white">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-num">1</div>
+            <div>
+              <div class="tl-title">味噌の種類と発酵の仕組み</div>
+              <div class="tl-desc">麹菌の働きや、大豆・塩・麹がどのように変化して味噌になるのかを学びます。</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">2</div>
+            <div>
+              <div class="tl-title">味噌仕込み実践</div>
+              <div class="tl-desc">大豆を潰し、麹・塩と混ぜ合わせ、しっかりと仕込みます。2kg分をご自身で仕込んでいただきます。</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">3</div>
+            <div>
+              <div class="tl-title">発酵食ランチタイム</div>
+              <div class="tl-desc">手作り発酵食品を使ったランチをいただきながら、腸活トークで盛り上がります。</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">4</div>
+            <div>
+              <div class="tl-title">熟成管理・自宅でのお手入れ方法</div>
+              <div class="tl-desc">カビ対策、天地返しのタイミング、食べごろのサインなど、熟成期間の管理方法をていねいにお伝えします。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">受講生の声</h2>
+      <div class="voice-block">
+        <p class="voice-text">「自分で仕込んだ味噌が熟成していく過程が楽しみで仕方ありません。先生が「菌と向き合う」という感覚を大切に教えてくれるので、単なる料理教室じゃなく、発酵の哲学を学んでいる気持ちになりました。」</p>
+        <div class="voice-who">M.T様（40代・女性）/ 味噌仕込み講座受講</div>
+      </div>
+      <div class="voice-block">
+        <p class="voice-text">「市販の味噌とは全然違う！自分で作った味噌で作る味噌汁の美味しさに家族みんなが驚いていました。毎年リピートしています。」</p>
+        <div class="voice-who">K.N様（50代・女性）/ 2年連続受講</div>
+      </div>
+    </div>
+
+    <div class="apply-wrap">
+      <p class="apply-ttl">この講座に申し込む</p>
+      <a href="https://forms.gle/5BBEnMXtvWSxYbNW7" target="_blank" class="apply-btn">お申し込みはこちら</a>
+      <p class="apply-note">お申し込み後、日程調整をさせていただきます</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span class="f-brand">Serendipity〜神様からのお贈り物〜</span>
+  神・腸活マイスター 藤本ちさと<br>
+  <a href="https://www.instagram.com/chokatsu64/" target="_blank">Instagram @chokatsu64</a>
+  <div class="powered">Web Design by Blocky Web制作</div>
+</footer>
+
+
+<!-- LESSON FIXED BAR -->
+<div class="lesson-bar">
+  <a href="../index.html#courses" class="lesson-bar-back">← 戻る</a>
+  <a href="https://forms.gle/5BBEnMXtvWSxYbNW7" target="_blank" class="lesson-bar-apply">お申し込みはこちら</a>
+</div>
+</body>
+</html>

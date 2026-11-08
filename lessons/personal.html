@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>体質改善パーソナルレッスン 6ヶ月コース | Serendipity〜神様からのお贈り物〜</title>
+  <meta name="description" content="累計20名以上の体質改善実績。分子栄養学に基づき、あなただけの腸活プログラムをマンツーマンでサポート。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --orange: #e07b30; --orange2: #c45f18; --cream: #faf8f5; --white: #ffffff; --dark: #222222; --gray: #666666; --gray2: #999999; --border: #e8e0d6; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: var(--cream); color: var(--dark); font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; padding-bottom: 64px; }
+    .hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--white); border-bottom: 1px solid var(--border); height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; }
+    .hdr-brand { text-decoration: none; display: flex; flex-direction: column; }
+    .hdr-brand-main { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; font-weight: 700; color: var(--orange); letter-spacing: .04em; line-height: 1; }
+    .hdr-brand-sub { font-size: .65rem; color: var(--gray2); letter-spacing: .04em; margin-top: 2px; }
+    .hdr-nav { display: flex; align-items: center; gap: 28px; }
+    .hdr-nav a { font-size: .82rem; font-weight: 500; color: var(--dark); text-decoration: none; transition: color .15s; }
+    .hdr-nav a:hover { color: var(--orange); }
+    .hero { margin-top: 64px; position: relative; overflow: hidden; min-height: 380px; display: flex; align-items: flex-end; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+    .hero-ov { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,5,0,.82) 0%, rgba(10,5,0,.55) 55%, rgba(10,5,0,.2) 100%); }
+    .hero-body { position: relative; z-index: 2; padding: 44px 48px 56px; max-width: 640px; }
+    .hero-badge { display: inline-block; background: var(--orange); color: #fff; font: 700 .72rem/1 inherit; letter-spacing: .05em; padding: 4px 12px; border-radius: 4px; margin-bottom: 14px; }
+    .hero h1 { font-family: 'Noto Serif JP', serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 12px; }
+    .hero-catch { font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.9; margin-bottom: 18px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.18); color: rgba(255,255,255,.9); font-size: .78rem; padding: 5px 12px; border-radius: 100px; }
+    .ls { padding: 52px 48px 80px; }
+    .ls-inner { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+    .sec-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .sec-ttl::before { content: ''; display: block; width: 4px; height: 1.2em; background: var(--orange); border-radius: 2px; flex-shrink: 0; }
+    .info-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .info-table th, .info-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .info-table th { width: 30%; color: var(--gray); font-weight: 500; white-space: nowrap; }
+    .info-table td { font-weight: 500; }
+    .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
+    .price-val { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
+    .box-orange { background: #fff4ec; border-radius: 8px; padding: 24px 28px; }
+    .box-white { background: var(--white); border-radius: 8px; padding: 24px 28px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .stat-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .stat-item { flex: 1; min-width: 120px; background: var(--white); border-radius: 8px; padding: 20px 16px; text-align: center; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .stat-num { font-family: 'Noto Serif JP', serif; font-size: 1.6rem; font-weight: 700; color: var(--orange); margin-bottom: 4px; }
+    .stat-lbl { font-size: .8rem; color: var(--gray); line-height: 1.5; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .9rem; }
+    .check-list li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .prog-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .prog-item { background: var(--white); border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .prog-ttl { font-weight: 700; font-size: .95rem; color: var(--dark); margin-bottom: 6px; }
+    .prog-desc { font-size: .88rem; color: var(--gray); line-height: 1.75; }
+    .voice-block { border-left: 3px solid var(--orange); padding: 16px 20px; background: var(--white); border-radius: 0 8px 8px 0; box-shadow: 0 1px 6px rgba(0,0,0,.05); margin-bottom: 16px; }
+    .voice-block:last-child { margin-bottom: 0; }
+    .voice-text { font-size: .9rem; color: var(--dark); line-height: 1.85; margin-bottom: 8px; }
+    .voice-who { font-size: .78rem; color: var(--gray2); }
+    .apply-wrap { text-align: center; background: var(--white); border-radius: 12px; padding: 40px 32px; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .apply-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .apply-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 17px 44px; border-radius: 980px; font: 700 1.05rem/1 inherit; text-decoration: none; box-shadow: 0 4px 20px rgba(224,123,48,.4); transition: transform .2s, box-shadow .2s; }
+    .apply-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(224,123,48,.45); }
+    .apply-note { margin-top: 14px; font-size: .84rem; color: var(--gray); }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: .84rem; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+    .back-link:hover { color: var(--orange); border-color: var(--orange); }
+    footer { background: var(--dark); color: rgba(255,255,255,.4); text-align: center; padding: 40px 28px; font-size: .8rem; line-height: 2.1; }
+    footer .f-brand { font-family: 'Noto Serif JP', serif; color: var(--orange); font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 6px; }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+    .powered { margin-top: 14px; font-size: .68rem; color: rgba(255,255,255,.18); }
+    @media (max-width: 900px) { .hdr { padding: 0 20px; } .hdr-nav { gap: 16px; } .hdr-nav a { font-size: .76rem; } .hero-body { padding: 36px 24px 48px; } .ls { padding: 40px 20px 60px; } .stat-row { gap: 12px; } }
+    @media (max-width: 560px) { .hdr-nav { display: none; } .hero h1 { font-size: 1.5rem; } }
+
+    /* ── LESSON FIXED BAR ── */
+    .lesson-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; display: flex; background: #fff; border-top: 1px solid var(--border); box-shadow: 0 -2px 16px rgba(0,0,0,.08); }
+    .lesson-bar-back { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: #fff; color: var(--dark); padding: 16px 12px; font: 500 .88rem/1 'Noto Sans JP',sans-serif; text-decoration: none; border-right: 1px solid var(--border); transition: background .15s; }
+    .lesson-bar-back:hover { background: var(--cream); }
+    .lesson-bar-apply { flex: 2; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--orange); color: #fff; padding: 16px 20px; font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s; }
+    .lesson-bar-apply:hover { background: var(--orange2); }
+  </style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="../index.html" class="hdr-brand">
+    <span class="hdr-brand-main">Serendipity</span>
+    <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="../index.html#courses">講座一覧</a>
+    <a href="../index.html#profile">プロフィール</a>
+    <a href="../index.html#voice">受講生の声</a>
+    
+    <a href="../index.html#faq">よくある質問</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="../images/personal.png" alt="パーソナルレッスン"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-body">
+    <span class="hero-badge">🏆 継続レッスン・人気No.1</span>
+    <h1>体質改善パーソナルレッスン<br>6ヶ月コース</h1>
+    <p class="hero-catch">累計20名以上の体質改善実績。<br>分子栄養学に基づき、あなただけの腸活プログラムをマンツーマンでサポートします。</p>
+    <div class="hero-chips">
+      <span class="hero-chip">📅 6ヶ月プログラム</span>
+      <span class="hero-chip">💻 オンライン／対面可</span>
+      <span class="hero-chip">👤 完全個別対応</span>
+    </div>
+  </div>
+</section>
+
+<div class="ls">
+  <div class="ls-inner">
+
+    <a href="../index.html#courses" class="back-link">← 講座一覧に戻る</a>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num">20名+</div>
+        <div class="stat-lbl">パーソナル<br>受講実績</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20年</div>
+        <div class="stat-lbl">講師歴</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6ヶ月</div>
+        <div class="stat-lbl">完全サポート</div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">こんなお悩みはありませんか？</h2>
+      <div class="box-orange">
+        <ul class="check-list">
+          <li>慢性的な疲れ・だるさが取れない</li>
+          <li>便秘や下痢を繰り返している</li>
+          <li>肌荒れ・アレルギー症状に悩んでいる</li>
+          <li>ダイエットしても痩せない</li>
+          <li>メンタルの不調を抱えている</li>
+          <li>本気で体質を変えたい</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">プログラム内容</h2>
+      <ul class="prog-list">
+        <li class="prog-item">
+          <div class="prog-ttl">📋 初回カウンセリング（90分）</div>
+          <div class="prog-desc">生活習慣、食事内容、体の悩みを詳しくヒアリング。あなた専用のプログラムを設計します。</div>
+        </li>
+        <li class="prog-item">
+          <div class="prog-ttl">📱 月2回のマンツーマンセッション（各60分）</div>
+          <div class="prog-desc">オンラインまたは対面で、進捗確認・アドバイス・質問対応を行います。</div>
+        </li>
+        <li class="prog-item">
+          <div class="prog-ttl">💬 LINEで日常サポート（6ヶ月間）</div>
+          <div class="prog-desc">食事の写真を送ってアドバイスを受けたり、いつでも質問・相談できます。</div>
+        </li>
+        <li class="prog-item">
+          <div class="prog-ttl">📖 オリジナル教材＆レシピ提供</div>
+          <div class="prog-desc">あなたの体質に合わせた食材リスト、レシピ、発酵食の作り方など。</div>
+        </li>
+        <li class="prog-item">
+          <div class="prog-ttl">🧪 体質分析シート</div>
+          <div class="prog-desc">分子栄養学に基づく体質分析で、あなたに必要な栄養素を明確化します。</div>
+        </li>
+        <li class="prog-item">
+          <div class="prog-ttl">🎁 発酵食講座の優先受講権</div>
+          <div class="prog-desc">甘酒・味噌・ぬか漬けなどの単発講座に優先的に参加できます。</div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="sec-ttl">受講生の声</h2>
+      <div class="voice-block">
+        <p class="voice-text">「人生が変わりました。長年悩んでいた便秘と肌荒れが、3ヶ月で劇的に改善しました。藤本先生は私の生活リズムや好みを理解して、無理なく続けられるプログラムを組んでくれました。今では疲れにくくなり、心も軽くなりました。本当に感謝しています。」</p>
+        <div class="voice-who">Y.K様（40代・女性・会社員）</div>
+      </div>
+      <div class="voice-block">
+        <p class="voice-text">「-8kgのダイエットに成功！何をやっても痩せなかったのに、腸内環境を整えたら自然と体重が落ちました。無理な食事制限もなく、むしろ美味しい発酵食を楽しみながらのダイエット。リバウンドもしていません。」</p>
+        <div class="voice-who">M.T様（30代・女性・主婦）</div>
+      </div>
+    </div>
+
+    <div class="apply-wrap">
+      <p class="apply-ttl">まずは無料相談から</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn">お申し込みはこちら</a>
+      <p class="apply-note">お申し込み後、日程調整をさせていただきます（月3名限定）</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span class="f-brand">Serendipity〜神様からのお贈り物〜</span>
+  神・腸活マイスター 藤本ちさと<br>
+  <a href="https://www.instagram.com/chokatsu64/" target="_blank">Instagram @chokatsu64</a>
+  <div class="powered">Web Design by Blocky Web制作</div>
+</footer>
+
+
+<!-- LESSON FIXED BAR -->
+<div class="lesson-bar">
+  <a href="../index.html#courses" class="lesson-bar-back">← 戻る</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="lesson-bar-apply">お申し込みはこちら</a>
+</div>
+</body>
+</html>

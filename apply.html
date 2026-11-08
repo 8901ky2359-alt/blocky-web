@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お申し込み | Serendipity〜神様からのお贈り物〜</title>
+  <meta name="description" content="Serendipity 発酵・腸活スクールのお申し込みページ。単発講座・継続レッスン・養成講座・季節限定講座のお申し込みはこちらから。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange:  #e07b30;
+      --orange2: #c45f18;
+      --cream:   #faf8f5;
+      --white:   #ffffff;
+      --dark:    #222222;
+      --gray:    #666666;
+      --gray2:   #999999;
+      --border:  #e8e0d6;
+      --line:    #06c755;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 64px;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+    }
+    .hdr-brand { text-decoration: none; display: flex; flex-direction: column; }
+    .hdr-brand-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--orange); letter-spacing: .04em; line-height: 1;
+    }
+    .hdr-brand-sub { font-size: .65rem; color: var(--gray2); letter-spacing: .04em; margin-top: 2px; }
+    .hdr-nav { display: flex; align-items: center; gap: 28px; }
+    .hdr-nav a {
+      font-size: .82rem; font-weight: 500; color: var(--dark);
+      text-decoration: none; transition: color .15s;
+    }
+    .hdr-nav a:hover { color: var(--orange); }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 36px; height: 36px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); transition: all .25s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-nav-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 190;
+    }
+    .mobile-nav-overlay.open { display: block; }
+    .mobile-nav-panel {
+      position: fixed; top: 0; right: -100%; width: 75%; max-width: 280px;
+      height: 100%; background: var(--white); z-index: 195;
+      padding: 80px 28px 32px; transition: right .3s;
+      border-left: 1px solid var(--border); overflow-y: auto;
+    }
+    .mobile-nav-panel.open { right: 0; }
+    .mobile-nav-panel a {
+      display: block; padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font: 500 1rem/1 'Noto Sans JP',sans-serif;
+      color: var(--dark); text-decoration: none;
+    }
+    .mobile-nav-panel a:hover { color: var(--orange); }
+    .mobile-nav-panel .mnav-cta {
+      display: block; margin-top: 24px;
+      background: var(--orange); color: #fff;
+      padding: 14px; text-align: center; font-weight: 700; border-radius: 0;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 64px;
+      background: linear-gradient(120deg, #fff8f2 0%, #faf8f5 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 48px 36px;
+      text-align: center;
+    }
+    .page-hero-en { font-size: .72rem; letter-spacing: .22em; color: var(--orange); text-transform: uppercase; margin-bottom: 8px; }
+    .page-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--dark);
+    }
+    .page-hero-sub { margin-top: 10px; font-size: .88rem; color: var(--gray); }
+
+    /* ── APPLY CARDS ── */
+    .apply-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 60px 24px 48px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .apply-card {
+      background: var(--white); border: 2px solid var(--border);
+      padding: 36px 40px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .apply-card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(224,123,48,.12); }
+    .apply-card-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange);
+    }
+    .apply-card h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--dark); line-height: 1.5;
+    }
+    .apply-card p { font-size: .88rem; color: var(--gray); line-height: 1.85; }
+    .apply-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .apply-tag {
+      display: inline-block; background: #fff4ec; color: var(--orange);
+      font: 600 .72rem/1 inherit; padding: 4px 10px; letter-spacing: .03em;
+    }
+    .apply-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 16px 32px; font: 700 1rem/1 'Noto Sans JP',sans-serif;
+      text-decoration: none; border: 2px solid var(--orange);
+      transition: all .15s; align-self: flex-start;
+    }
+    .apply-btn.primary { background: var(--orange); color: #fff; }
+    .apply-btn.primary:hover { background: var(--orange2); border-color: var(--orange2); }
+    .apply-btn.outline { background: transparent; color: var(--orange); }
+    .apply-btn.outline:hover { background: var(--orange); color: #fff; }
+
+    /* ── FIXED BOTTOM BAR ── */
+    .fixed-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      display: flex; background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -2px 16px rgba(0,0,0,.08);
+    }
+    .fixed-bar-back {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: var(--white); color: var(--dark); padding: 26px 20px;
+      font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s;
+      border-right: 1px solid var(--border);
+    }
+    .fixed-bar-back:hover { background: var(--cream); }
+    .fixed-bar-apply {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--orange); color: #fff; padding: 26px 20px;
+      font: 700 .9rem/1 'Noto Sans JP',sans-serif; text-decoration: none; transition: background .15s;
+    }
+    .fixed-bar-apply:hover { background: var(--orange2); }
+
+    /* ── CANCEL POLICY ── */
+    .cancel-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 0 24px 56px;
+    }
+    .cancel-box {
+      background: var(--white); border: 2px solid var(--border);
+      padding: 36px 40px;
+    }
+    .cancel-heading {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .cancel-heading-en {
+      font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 16px;
+    }
+    .cancel-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0 24px;
+      font-size: .88rem;
+    }
+    .cancel-table th, .cancel-table td {
+      padding: 12px 16px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .cancel-table th {
+      background: #fff4ec; color: var(--orange);
+      font-weight: 700; font-size: .78rem; letter-spacing: .04em;
+    }
+    .cancel-table tr:last-child td { border-bottom: none; }
+    .cancel-table .fee-free { color: #059669; font-weight: 700; }
+    .cancel-table .fee-half { color: #d97706; font-weight: 700; }
+    .cancel-table .fee-full { color: #dc2626; font-weight: 700; }
+    .cancel-notes { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .cancel-note {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .85rem; color: var(--gray); line-height: 1.7;
+    }
+    .cancel-note-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      background: #fff4ec; color: var(--orange);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 700; margin-top: 1px;
+    }
+    @media (max-width: 560px) {
+      .cancel-section { padding: 0 16px 48px; }
+      .cancel-box { padding: 24px 20px; }
+      .cancel-table th, .cancel-table td { padding: 10px 12px; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.4);
+      text-align: center; padding: 40px 28px;
+      font-size: .8rem; line-height: 2.1;
+    }
+    footer .f-brand { font-family: 'Noto Serif JP',serif; color: var(--orange); font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 6px; }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hdr { padding: 0 20px; }
+      .page-hero { padding: 32px 20px 28px; }
+    }
+    @media (max-width: 560px) {
+      .hdr-nav { display: none; }
+      .hamburger { display: flex; }
+      .apply-wrap { padding: 36px 16px 40px; gap: 16px; }
+      .apply-card { padding: 24px 20px; }
+      .apply-card h2 { font-size: 1.1rem; }
+      .apply-btn { align-self: stretch; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <a href="index.html" class="hdr-brand">
+    <span class="hdr-brand-main">Serendipity</span>
+    <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="index.html#courses">講座一覧</a>
+    <a href="about.html">プロフィール</a>
+    <a href="about.html#voice">受講生の声</a>
+    <a href="about.html#faq">よくある質問</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- モバイルナビ -->
+<div class="mobile-nav-overlay" id="mobileOverlay"></div>
+<div class="mobile-nav-panel" id="mobileNav">
+  <a href="index.html#courses">講座一覧</a>
+  <a href="about.html">プロフィール</a>
+  <a href="about.html#voice">受講生の声</a>
+  <a href="about.html#faq">よくある質問</a>
+  <a href="apply.html" class="mnav-cta">お申し込みはこちら</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-en">Application</div>
+  <h1>お申し込み</h1>
+  <p class="page-hero-sub">ご希望の講座の種類をお選びください</p>
+</div>
+
+<!-- APPLY CARDS -->
+<div class="apply-wrap">
+
+  <!-- 通常講座 -->
+  <div class="apply-card">
+    <div class="apply-card-label">Regular Courses</div>
+    <h2>単発講座・継続レッスン・養成講座</h2>
+    <div class="apply-card-tags">
+      <span class="apply-tag">甘酒講座</span>
+      <span class="apply-tag">白みそ講座</span>
+      <span class="apply-tag">豆腐講座</span>
+      <span class="apply-tag">発酵あんこ</span>
+      <span class="apply-tag">キムチ講座</span>
+      <span class="apply-tag">ぬか漬け講座</span>
+      <span class="apply-tag">おうちCafe</span>
+      <span class="apply-tag">パーソナルレッスン</span>
+      <span class="apply-tag">腸活マイスター養成</span>
+    </div>
+    <p>単発講座・継続レッスン・養成講座のお申し込みはこちらのフォームからどうぞ。</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn primary">このフォームから申し込む →</a>
+  </div>
+
+  <!-- 季節限定 -->
+  <div class="apply-card">
+    <div class="apply-card-label">Seasonal Limited</div>
+    <h2>季節限定講座</h2>
+    <div class="apply-card-tags">
+      <span class="apply-tag">梅干し講座（7月）</span>
+      <span class="apply-tag">お味噌仕込み（1〜3月）</span>
+    </div>
+    <p>季節限定講座のお申し込みはこちらの専用フォームからどうぞ。開催時期が限られていますので、お早めにどうぞ。</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="apply-btn outline">このフォームから申し込む →</a>
+  </div>
+
+</div>
+
+<!-- CANCEL POLICY -->
+<div class="cancel-section">
+  <div class="cancel-box">
+    <div class="cancel-heading-en">Cancellation Policy</div>
+    <div class="cancel-heading">キャンセルポリシー</div>
+
+    <table class="cancel-table">
+      <thead>
+        <tr>
+          <th>キャンセルのタイミング</th>
+          <th>キャンセル料</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>開催日の4日前以前</td>
+          <td class="fee-free">無料</td>
+        </tr>
+        <tr>
+          <td>開催日の3日前まで</td>
+          <td class="fee-half">参加費の50%</td>
+        </tr>
+        <tr>
+          <td>前日・当日</td>
+          <td class="fee-full">参加費の100%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cancel-notes">
+      <div class="cancel-note">
+        <div class="cancel-note-icon">¥</div>
+        <div>お支払いは<strong>銀行振込（事前払い）</strong>のみとなります。振込先はお申し込み後にご案内いたします。</div>
+      </div>
+      <div class="cancel-note">
+        <div class="cancel-note-icon">✉</div>
+        <div>キャンセルのご連絡は<strong>公式LINE</strong>よりお願いいたします。</div>
+      </div>
+      <div class="cancel-note">
+        <div class="cancel-note-icon">!</div>
+        <div>天災・急病等のやむを得ない事情がある場合は、個別にご相談ください。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-brand">Serendipity〜神様からのお贈り物〜</span>
+  神・腸活マイスター 藤本ちさと<br>
+  <a href="https://www.instagram.com/chokatsu64/" target="_blank">Instagram @chokatsu64</a>
+</footer>
+
+<!-- FIXED BOTTOM BAR -->
+<div class="fixed-bar">
+  <a href="index.html" class="fixed-bar-back">← トップに戻る</a>
+  <a href="courses.html" class="fixed-bar-apply">🌿 講座一覧</a>
+</div>
+
+<script>
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  var mobileOverlay = document.getElementById('mobileOverlay');
+  function openNav() {
+    hamburger.classList.add('open');
+    mobileNav.classList.add('open');
+    mobileOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  mobileOverlay.addEventListener('click', closeNav);
+  document.querySelectorAll('.mobile-nav-panel a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+</script>
+</body>
+</html>
