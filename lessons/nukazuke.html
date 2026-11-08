@@ -61,6 +61,12 @@
     .apply-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
     .apply-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 17px 44px; border-radius: 980px; font: 700 1.05rem/1 inherit; text-decoration: none; box-shadow: 0 4px 20px rgba(224,123,48,.4); transition: transform .2s, box-shadow .2s; }
     .apply-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(224,123,48,.45); }
+    .apply-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; background: #fff; color: #06c755; border: 2px solid #06c755; padding: 12px 28px; border-radius: 980px; font: 700 .9rem/1 inherit; text-decoration: none; transition: background .15s, color .15s; }
+    .apply-line:hover { background: #06c755; color: #fff; }
+    .apply-flow { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 4px; margin-top: 24px; padding-top: 20px; border-top: 1px dashed var(--border, #e8e0d6); font-size: .8rem; color: var(--gray); }
+    .apply-flow li { display: flex; align-items: center; gap: 4px; }
+    .apply-flow li:not(:last-child)::after { content: '→'; color: var(--orange); margin-left: 4px; }
+    .apply-flow b { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--orange); color: #fff; font-size: .68rem; }
     .apply-note { margin-top: 14px; font-size: .84rem; color: var(--gray); }
     .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: .84rem; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
     .back-link:hover { color: var(--orange); border-color: var(--orange); }
@@ -87,11 +93,11 @@
     <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
   </a>
   <nav class="hdr-nav">
-    <a href="../index.html#courses">講座一覧</a>
-    <a href="../index.html#profile">プロフィール</a>
-    <a href="../index.html#voice">受講生の声</a>
+    <a href="../courses.html">講座一覧</a>
+    <a href="../about.html#profile">プロフィール</a>
+    <a href="../about.html#voice">受講生の声</a>
     
-    <a href="../index.html#faq">よくある質問</a>
+    <a href="../about.html#faq">よくある質問</a>
   </nav>
 </header>
 
@@ -115,7 +121,7 @@
 <div class="ls">
   <div class="ls-inner">
 
-    <a href="../index.html#courses" class="back-link">← 講座一覧に戻る</a>
+    <a href="../courses.html" class="back-link">← 講座一覧に戻る</a>
 
     <div class="highlight-box">
       <p style="font-weight:700; color:var(--orange); margin-bottom:8px;">🌟 この講座の特長</p>
@@ -209,7 +215,14 @@
     <div class="apply-wrap">
       <p class="apply-ttl">この講座に申し込む</p>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn">お申し込みはこちら</a>
-      <p class="apply-note">お申し込み後、日程調整をさせていただきます</p>
+      <p class="apply-note">お申し込み内容を確認でき次第、ご連絡いたします</p>
+      <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" class="apply-line">LINEで申し込む・相談する</a>
+      <ol class="apply-flow">
+        <li><b>1</b>フォーム送信</li>
+        <li><b>2</b>遅くとも翌日までにご連絡</li>
+        <li><b>3</b>日程決定・お振込</li>
+        <li><b>4</b>講座当日</li>
+      </ol>
     </div>
 
   </div>
@@ -225,7 +238,7 @@
 
 <!-- LESSON FIXED BAR -->
 <div class="lesson-bar">
-  <a href="../index.html#courses" class="lesson-bar-back">← 戻る</a>
+  <a href="../courses.html" class="lesson-bar-back">← 戻る</a>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="lesson-bar-apply">お申し込みはこちら</a>
 </div>
 </body>

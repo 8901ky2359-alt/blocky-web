@@ -213,6 +213,49 @@
       .cancel-table th, .cancel-table td { padding: 10px 12px; }
     }
 
+    /* ── FLOW ── */
+    .flow { max-width: 760px; margin: 0 auto; padding: 48px 24px 0; }
+    .sec-label { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+    .sec-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 20px; }
+    .flow-steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .flow-step { background: var(--white); border: 2px solid var(--border); padding: 20px 14px 18px; text-align: center; position: relative; }
+    .flow-num { width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; font-size: .9rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+    .flow-step strong { display: block; font-size: .92rem; line-height: 1.5; margin-bottom: 4px; }
+    .flow-step span { display: block; font-size: .78rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── COURSE PICKER ── */
+    .apply-group { display: flex; flex-direction: column; gap: 10px; }
+    .apply-group-ttl { font-size: .8rem; font-weight: 700; color: var(--gray); letter-spacing: .04em; margin-top: 6px; }
+    .course-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .course-btn {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: var(--white); border: 2px solid var(--border); padding: 16px 18px;
+      color: var(--dark); text-decoration: none; font-weight: 700; font-size: .92rem;
+      transition: border-color .15s, background .15s;
+    }
+    .course-btn:hover { border-color: var(--orange); background: #fff8f2; }
+    .course-btn small { display: block; font-size: .72rem; font-weight: 500; color: var(--gray2); margin-top: 2px; }
+    .course-btn-go { flex-shrink: 0; color: var(--orange); font-size: .8rem; white-space: nowrap; }
+
+    /* ── LINE ── */
+    .line-card { background: #f0fbf4; border: 2px solid #bfe9cd; padding: 28px 32px; display: flex; flex-direction: column; gap: 12px; }
+    .line-card h2 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; }
+    .line-card p { font-size: .86rem; color: var(--gray); line-height: 1.85; }
+    .line-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: flex-start;
+      background: var(--line); color: #fff; padding: 15px 30px; text-decoration: none;
+      font: 700 .95rem/1 'Noto Sans JP',sans-serif; transition: opacity .15s;
+    }
+    .line-btn:hover { opacity: .88; }
+    .cancel-note a { color: var(--line); font-weight: 700; }
+    @media (max-width: 760px) { .flow-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) {
+      .flow { padding: 32px 16px 0; }
+      .course-btns { grid-template-columns: 1fr; }
+      .line-card { padding: 22px 20px; }
+      .line-btn { align-self: stretch; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--dark); color: rgba(255,255,255,.4);
@@ -246,7 +289,7 @@
     <span class="hdr-brand-sub">〜神様からのお贈り物〜</span>
   </a>
   <nav class="hdr-nav">
-    <a href="index.html#courses">講座一覧</a>
+    <a href="courses.html">講座一覧</a>
     <a href="about.html">プロフィール</a>
     <a href="about.html#voice">受講生の声</a>
     <a href="about.html#faq">よくある質問</a>
@@ -259,7 +302,7 @@
 <!-- モバイルナビ -->
 <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 <div class="mobile-nav-panel" id="mobileNav">
-  <a href="index.html#courses">講座一覧</a>
+  <a href="courses.html">講座一覧</a>
   <a href="about.html">プロフィール</a>
   <a href="about.html#voice">受講生の声</a>
   <a href="about.html#faq">よくある質問</a>
@@ -270,41 +313,57 @@
 <div class="page-hero">
   <div class="page-hero-en">Application</div>
   <h1>お申し込み</h1>
-  <p class="page-hero-sub">ご希望の講座の種類をお選びください</p>
+  <p class="page-hero-sub">受けたい講座のボタンを押すと、お申し込みフォームが開きます</p>
 </div>
 
-<!-- APPLY CARDS -->
+<!-- FLOW -->
+<section class="flow">
+  <div class="sec-label">Flow</div>
+  <h2 class="sec-ttl">お申し込みの流れ</h2>
+  <ol class="flow-steps">
+    <li class="flow-step"><div class="flow-num">1</div><strong>フォームを送信</strong><span>下のボタンから講座を選んでご入力ください</span></li>
+    <li class="flow-step"><div class="flow-num">2</div><strong>ご連絡</strong><span>確認でき次第ご連絡します（遅くとも翌日まで）</span></li>
+    <li class="flow-step"><div class="flow-num">3</div><strong>日程決定・お振込</strong><span>日程を調整し、振込先をご案内します</span></li>
+    <li class="flow-step"><div class="flow-num">4</div><strong>講座当日</strong><span>お会いできるのを楽しみにしています</span></li>
+  </ol>
+</section>
+
+<!-- COURSE PICKER -->
 <div class="apply-wrap">
 
-  <!-- 通常講座 -->
-  <div class="apply-card">
-    <div class="apply-card-label">Regular Courses</div>
-    <h2>単発講座・継続レッスン・養成講座</h2>
-    <div class="apply-card-tags">
-      <span class="apply-tag">甘酒講座</span>
-      <span class="apply-tag">白みそ講座</span>
-      <span class="apply-tag">豆腐講座</span>
-      <span class="apply-tag">発酵あんこ</span>
-      <span class="apply-tag">キムチ講座</span>
-      <span class="apply-tag">ぬか漬け講座</span>
-      <span class="apply-tag">おうちCafe</span>
-      <span class="apply-tag">パーソナルレッスン</span>
-      <span class="apply-tag">腸活マイスター養成</span>
+  <div class="apply-group">
+    <div class="sec-label">Step 1</div>
+    <h2 class="sec-ttl" style="margin-bottom:4px;">受けたい講座を選んでください</h2>
+
+    <div class="apply-group-ttl">単発講座</div>
+    <div class="course-btns">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>甘酒講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>白みそ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>豆腐講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>発酵あんこ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>キムチ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>ぬか漬け講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>おうちCafe<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
     </div>
-    <p>単発講座・継続レッスン・養成講座のお申し込みはこちらのフォームからどうぞ。</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn primary">このフォームから申し込む →</a>
+
+    <div class="apply-group-ttl">継続レッスン・養成講座</div>
+    <div class="course-btns">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>体質改善パーソナルレッスン<small>継続レッスン・6ヶ月コース</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>腸活マイスター養成講座<small>養成講座</small></span><span class="course-btn-go">申し込む →</span></a>
+    </div>
+
+    <div class="apply-group-ttl">季節限定講座（開催時期が限られています）</div>
+    <div class="course-btns">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>梅干し講座<small>季節限定・毎年7月</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>お味噌仕込み講座<small>季節限定・1〜3月</small></span><span class="course-btn-go">申し込む →</span></a>
+    </div>
   </div>
 
-  <!-- 季節限定 -->
-  <div class="apply-card">
-    <div class="apply-card-label">Seasonal Limited</div>
-    <h2>季節限定講座</h2>
-    <div class="apply-card-tags">
-      <span class="apply-tag">梅干し講座（7月）</span>
-      <span class="apply-tag">お味噌仕込み（1〜3月）</span>
-    </div>
-    <p>季節限定講座のお申し込みはこちらの専用フォームからどうぞ。開催時期が限られていますので、お早めにどうぞ。</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="apply-btn outline">このフォームから申し込む →</a>
+  <!-- LINE -->
+  <div class="line-card">
+    <h2>フォームが苦手な方は、LINEでもお申し込みいただけます</h2>
+    <p>公式LINEを友だち追加して、「〇〇講座に申し込みたい」とメッセージを送るだけでOKです。ご質問やご相談もお気軽にどうぞ。</p>
+    <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" class="line-btn">LINEで申し込む・相談する</a>
   </div>
 
 </div>
@@ -345,7 +404,7 @@
       </div>
       <div class="cancel-note">
         <div class="cancel-note-icon">✉</div>
-        <div>キャンセルのご連絡は<strong>公式LINE</strong>よりお願いいたします。</div>
+        <div>キャンセルのご連絡は<a href="https://line.me/R/ti/p/@dls2613o" target="_blank">公式LINE</a>よりお願いいたします。</div>
       </div>
       <div class="cancel-note">
         <div class="cancel-note-icon">!</div>
