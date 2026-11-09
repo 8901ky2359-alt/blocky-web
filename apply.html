@@ -236,19 +236,64 @@
     /* ── COURSE PICKER ── */
     .apply-group { display: flex; flex-direction: column; gap: 10px; }
     .apply-group-ttl { font-size: .8rem; font-weight: 700; color: var(--gray); letter-spacing: .04em; margin-top: 6px; }
+    .step-lead { font-size: .86rem; color: var(--gray); margin: -10px 0 4px; }
     .course-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .course-btn {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      background: var(--white); border: 2px solid var(--border); padding: 16px 18px;
-      color: var(--dark); text-decoration: none; font-weight: 700; font-size: .92rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+      background: var(--white); border: 2px solid var(--border); padding: 16px 18px; text-align: left; cursor: pointer;
+      color: var(--dark); font: 700 .95rem/1.5 'Noto Sans JP',sans-serif;
       transition: border-color .15s, background .15s;
     }
     .course-btn:hover { border-color: var(--orange); background: #fff8f2; }
-    .course-btn small { display: block; font-size: .72rem; font-weight: 500; color: var(--gray2); margin-top: 2px; }
+    .course-btn small { display: block; font-size: .74rem; font-weight: 500; color: var(--gray); margin-top: 2px; }
+    .course-btn[aria-pressed="true"] { border-color: var(--orange); background: #fff4ec; }
     .mode { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
     .mode-tag { display: inline-block; font-size: .7rem; font-weight: 700; line-height: 1; padding: 4px 7px; background: #fff4ec; color: var(--orange2); border-radius: 3px; }
     .mode-tag.onsite { background: #f1ede8; color: var(--gray); }
-    .course-btn-go { flex-shrink: 0; background: #06c755; color: #fff; font-size: .78rem; font-weight: 700; line-height: 1.35; text-align: center; padding: 8px 12px; border-radius: 4px; white-space: nowrap; }
+    .pick { flex-shrink: 0; min-width: 76px; text-align: center; font-size: .8rem; font-weight: 700; padding: 9px 10px; border: 2px solid var(--orange); color: var(--orange); border-radius: 4px; line-height: 1.2; }
+    .course-btn[aria-pressed="true"] .pick { background: var(--orange); color: #fff; }
+
+    .apply-group, .detail-card { scroll-margin-top: 84px; }
+    /* ── DETAIL (STEP 2) ── */
+    .detail-empty { background: var(--white); border: 2px dashed var(--border); padding: 22px; text-align: center; font-size: .9rem; color: var(--gray); }
+    .detail-card { background: var(--white); border: 2px solid var(--orange); padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+    .detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .detail-head h3 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
+    .detail-head small { display: block; font: 500 .78rem/1.5 'Noto Sans JP',sans-serif; color: var(--gray); margin-top: 2px; }
+    .detail-remove { flex-shrink: 0; background: none; border: 1px solid var(--border); color: var(--gray); font: 500 .78rem/1 'Noto Sans JP',sans-serif; padding: 8px 10px; cursor: pointer; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field > label, .field > .field-lbl { font-size: .86rem; font-weight: 700; }
+    .req { display: inline-block; margin-left: 6px; font-size: .68rem; color: #fff; background: #dc2626; padding: 2px 6px; border-radius: 3px; vertical-align: 1px; }
+    .opt { display: inline-block; margin-left: 6px; font-size: .68rem; color: var(--gray); background: #f1ede8; padding: 2px 6px; border-radius: 3px; vertical-align: 1px; }
+    .field input[type=date], .field input[type=text], .field select, .field textarea {
+      width: 100%; font: 500 1.05rem/1.4 'Noto Sans JP',sans-serif; color: var(--dark);
+      background: #fff; border: 2px solid var(--border); padding: 12px 14px; border-radius: 4px; min-height: 52px;
+    }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--orange); }
+    .field .hint { font-size: .78rem; color: var(--gray); }
+    .fixed-time { font-size: 1rem; font-weight: 700; background: var(--cream); padding: 10px 14px; border-radius: 4px; }
+    .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice span { display: inline-block; padding: 11px 16px; border: 2px solid var(--border); border-radius: 4px; font-size: .95rem; font-weight: 700; cursor: pointer; background: #fff; }
+    .choice input:checked + span { border-color: var(--orange); background: var(--orange); color: #fff; }
+    .choice input:focus-visible + span { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .add-more { align-self: stretch; background: #fff; border: 2px dashed var(--orange); color: var(--orange); font: 700 .95rem/1 'Noto Sans JP',sans-serif; padding: 16px; cursor: pointer; }
+
+    /* ── SEND (STEP 4) ── */
+    .send-box { background: var(--white); border: 2px solid var(--border); padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: stretch; text-align: center; }
+    .send-btn { display: block; background: var(--line); color: #fff; text-decoration: none; padding: 20px; font: 700 1.15rem/1 'Noto Sans JP',sans-serif; border-radius: 6px; box-shadow: 0 4px 16px rgba(6,199,85,.3); }
+    .send-btn[aria-disabled="true"] { background: #b7c4bc; box-shadow: none; }
+    .send-msg { font-size: .85rem; color: #dc2626; font-weight: 700; min-height: 1.2em; }
+    .send-note { font-size: .82rem; color: var(--gray); line-height: 1.7; }
+    .preview { text-align: left; background: #f6f6f6; border-radius: 6px; padding: 14px 16px; font-size: .8rem; line-height: 1.7; white-space: pre-wrap; color: #444; max-height: 260px; overflow: auto; }
+    .preview-lbl { text-align: left; font-size: .78rem; font-weight: 700; color: var(--gray); }
+
+    /* ── STICKY BAR ── */
+    .fixed-bar-apply.line { background: var(--line); }
+    .fixed-bar-apply.line:hover { background: #05a948; }
+    .fixed-bar-count { flex: 1; display: flex; align-items: center; justify-content: center; font: 700 .9rem/1.3 'Noto Sans JP',sans-serif; padding: 0 12px; text-align: center; border-right: 1px solid var(--border); }
 
     /* ── LINE ── */
     .line-card { background: #f0fbf4; border: 2px solid #bfe9cd; padding: 28px 32px; display: flex; flex-direction: column; gap: 12px; }
@@ -264,6 +309,7 @@
     @media (max-width: 560px) {
       .flow { padding: 32px 16px 0; }
       .course-btns { grid-template-columns: 1fr; }
+      .detail-card { padding: 18px 16px; }
       .line-card { padding: 22px 20px; }
       .line-btn { align-self: stretch; }
     }
@@ -325,7 +371,7 @@
 <div class="page-hero">
   <div class="page-hero-en">Application</div>
   <h1>お申し込み</h1>
-  <p class="page-hero-sub">受けたい講座のボタンを押すとLINEが開き、お申し込み用の文章が表示されます。<br>お名前・ご希望の日にちなどを書き込んで、そのまま送信してください。<br>💻 オンライン・🏠 対面のどちらで受けられるかも、各講座に記載しています</p>
+  <p class="page-hero-sub">講座と日にちを選んで「LINEで申し込む」を押すと、<br>選んだ内容が入力された状態でLINEが開きます。</p>
 </div>
 
 <!-- FLOW -->
@@ -333,43 +379,59 @@
   <div class="sec-label">Flow</div>
   <h2 class="sec-ttl">お申し込みの流れ</h2>
   <ol class="flow-steps">
-    <li class="flow-step"><div class="flow-num">1</div><div><strong>講座のボタンを押す</strong><span>下の一覧から受けたい講座を選ぶと、LINEが開きます</span></div></li>
-    <li class="flow-step"><div class="flow-num">2</div><div><strong>LINEで書き込んで送信</strong><span>お名前・ご希望の日にち・時間・人数などを「：」の後ろに書き込んで送信してください</span></div></li>
-    <li class="flow-step"><div class="flow-num">3</div><div><strong>確認のご連絡でお申し込み完了</strong><span>確認でき次第、遅くとも翌日までにLINEでご連絡し、日程と振込先をご案内します</span></div></li>
-    <li class="flow-step"><div class="flow-num">4</div><div><strong>お振込・講座当日</strong><span>事前にお振込のうえ、当日お越しください。お会いできるのを楽しみにしています</span></div></li>
+    <li class="flow-step"><div class="flow-num">1</div><div><strong>講座を選ぶ</strong><span>受けたい講座をタップします。いくつでも選べます</span></div></li>
+    <li class="flow-step"><div class="flow-num">2</div><div><strong>日にち・人数を選ぶ</strong><span>講座の時間は決まっています。ご希望の日にちと人数を選んでください</span></div></li>
+    <li class="flow-step"><div class="flow-num">3</div><div><strong>LINEで送信</strong><span>「LINEで申し込む」を押すと、選んだ内容が入ったLINEが開きます。そのまま送信してください</span></div></li>
+    <li class="flow-step"><div class="flow-num">4</div><div><strong>確認のご連絡でお申し込み完了</strong><span>遅くとも翌日までにLINEでご連絡し、振込先をご案内します</span></div></li>
   </ol>
 </section>
 
-<!-- COURSE PICKER -->
 <div class="apply-wrap">
 
-  <div class="apply-group">
+  <!-- STEP 1 -->
+  <section class="apply-group" id="step1">
     <div class="sec-label">Step 1</div>
-    <h2 class="sec-ttl" style="margin-bottom:4px;">受けたい講座を選んでください</h2>
+    <h2 class="sec-ttl">受けたい講座を選んでください</h2>
+    <p class="step-lead">タップすると選択されます。いくつでも選べます。</p>
+    <div id="courseList"></div>
+  </section>
 
-    <div class="apply-group-ttl">単発講座</div>
-    <div class="course-btns">
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E7%94%98%E9%85%92%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>甘酒講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E7%99%BD%E3%81%BF%E3%81%9D%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>白みそ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E8%B1%86%E8%85%90%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%9A%E5%AF%BE%E9%9D%A2%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>豆腐講座<small>単発講座</small><span class="mode"><span class="mode-tag onsite">🏠 対面のみ</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E7%99%BA%E9%85%B5%E3%81%82%E3%82%93%E3%81%93%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>発酵あんこ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E3%82%AD%E3%83%A0%E3%83%81%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>キムチ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E3%81%AC%E3%81%8B%E6%BC%AC%E3%81%91%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>ぬか漬け講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E3%81%8A%E3%81%86%E3%81%A1Cafe%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>おうちCafe<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-    </div>
+  <!-- STEP 2 -->
+  <section class="apply-group" id="step2">
+    <div class="sec-label">Step 2</div>
+    <h2 class="sec-ttl">日にち・人数を選んでください</h2>
+    <div id="details"><div class="detail-empty">STEP 1 で講座を選ぶと、ここに表示されます</div></div>
+    <button type="button" class="add-more" id="addMore" hidden>＋ ほかの講座も一緒に申し込む</button>
+  </section>
 
-    <div class="apply-group-ttl">継続レッスン・養成講座</div>
-    <div class="course-btns">
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E7%84%A1%E6%96%99%E7%9B%B8%E8%AB%87%E3%81%AE%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E4%BD%93%E8%B3%AA%E6%94%B9%E5%96%84%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AB%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>体質改善パーソナルレッスン<small>継続レッスン・6ヶ月コース</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E8%AA%AC%E6%98%8E%E4%BC%9A%E3%81%AE%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E8%85%B8%E6%B4%BB%E3%83%9E%E3%82%A4%E3%82%B9%E3%82%BF%E3%83%BC%E9%A4%8A%E6%88%90%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>腸活マイスター養成講座<small>養成講座</small><span class="mode"><span class="mode-tag">説明会：💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
+  <!-- STEP 3 -->
+  <section class="apply-group" id="step3">
+    <div class="sec-label">Step 3</div>
+    <h2 class="sec-ttl">お名前など</h2>
+    <div class="detail-card" style="border-color:var(--border)">
+      <div class="field">
+        <label for="name">お名前<span class="req">必須</span></label>
+        <input type="text" id="name" autocomplete="name" placeholder="例）藤本 花子">
+      </div>
+      <div class="field">
+        <label for="note">ご質問・ご要望<span class="opt">任意</span></label>
+        <textarea id="note" placeholder="例）アレルギーがあります、駐車場はありますか など"></textarea>
+      </div>
     </div>
+  </section>
 
-    <div class="apply-group-ttl">季節限定講座（開催時期が限られています）</div>
-    <div class="course-btns">
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E6%A2%85%E5%B9%B2%E3%81%97%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>梅干し講座<small>季節限定・毎年7月</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
-      <a href="https://line.me/R/oaMessage/@dls2613o/?%E3%80%90%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%80%91%E3%81%8A%E5%91%B3%E5%99%8C%E4%BB%95%E8%BE%BC%E3%81%BF%E8%AC%9B%E5%BA%A7%0A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%97%A5%E3%81%AB%E3%81%A1%EF%BC%9A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E3%81%AE%E6%99%82%E9%96%93%EF%BC%9A%0A%E5%8F%82%E5%8A%A0%E4%BA%BA%E6%95%B0%EF%BC%9A%E3%80%80%E5%90%8D%0A%E5%8F%97%E8%AC%9B%E6%96%B9%E6%B3%95%EF%BC%88%E5%AF%BE%E9%9D%A2%EF%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%EF%BC%9A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%EF%BC%9A%0A%0A%E2%80%BB%E3%80%8C%EF%BC%9A%E3%80%8D%E3%81%AE%E5%BE%8C%E3%82%8D%E3%81%AB%E3%81%94%E8%A8%98%E5%85%A5%E3%81%AE%E3%81%86%E3%81%88%E3%80%81%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E9%80%81%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%9F%E6%99%82%E7%82%B9%E3%81%A7%E3%80%81%E3%81%8A%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%AE%8C%E4%BA%86%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82" target="_blank" class="course-btn"><span>お味噌仕込み講座<small>季節限定・1〜3月</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">LINEで<br>申し込む</span></a>
+  <!-- STEP 4 -->
+  <section class="apply-group" id="step4">
+    <div class="sec-label">Step 4</div>
+    <h2 class="sec-ttl">LINEで送信</h2>
+    <div class="send-box">
+      <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" rel="noopener" class="send-btn" id="sendBtn" aria-disabled="true">LINEで申し込む</a>
+      <p class="send-msg" id="sendMsg" role="status"></p>
+      <p class="send-note">LINEが開いたら、内容を確認して<strong>そのまま送信</strong>してください。<br>内容を確認してご連絡した時点で、お申し込み完了となります。</p>
+      <div class="preview-lbl">LINEに入力される内容</div>
+      <div class="preview" id="preview"></div>
     </div>
-  </div>
+  </section>
 
   <!-- LINE -->
   <div class="line-card">
@@ -435,10 +497,188 @@
 
 <!-- FIXED BOTTOM BAR -->
 <div class="fixed-bar">
-  <a href="index.html" class="fixed-bar-back">← トップに戻る</a>
-  <a href="courses.html" class="fixed-bar-apply">🌿 講座一覧</a>
+  <div class="fixed-bar-count" id="barCount">講座を選んでください</div>
+  <a href="#step4" class="fixed-bar-apply line" id="barBtn">LINEで申し込む</a>
 </div>
 
+<script>
+  /* 講座データ。time が null の講座は「ご希望の時間帯」を選んでもらう */
+  var COURSES = [
+    { id: 'amazake',   group: '単発講座', name: '甘酒講座',         sub: '単発講座・¥4,000',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'shiromiso', group: '単発講座', name: '白みそ講座',       sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'tofu',      group: '単発講座', name: '豆腐講座',         sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面'] },
+    { id: 'anko',      group: '単発講座', name: '発酵あんこ講座',   sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'kimchi',    group: '単発講座', name: 'キムチ講座',       sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'nukazuke',  group: '単発講座', name: 'ぬか漬け講座',     sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'cafe',      group: '単発講座', name: 'おうちCafe',       sub: '単発講座・¥2,100',   time: '11:00〜13:00（約2時間）', modes: ['対面', 'オンライン'] },
+    { id: 'personal',  group: '継続レッスン・養成講座', name: '体質改善パーソナルレッスン', sub: '継続レッスン・まずは無料相談', label: '無料相談', time: null, modes: ['対面', 'オンライン'], solo: true },
+    { id: 'yousei',    group: '継続レッスン・養成講座', name: '腸活マイスター養成講座', sub: '養成講座・まずは無料説明会', label: '説明会', time: null, modes: ['対面', 'オンライン'] },
+    { id: 'umeboshi',  group: '季節限定講座（開催時期が限られています）', name: '梅干し講座', sub: '季節限定・毎年7月・¥7,300〜', time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'], months: [7] },
+    { id: 'miso',      group: '季節限定講座（開催時期が限られています）', name: 'お味噌仕込み講座', sub: '季節限定・1〜3月', time: '約3時間半（開始時間はご連絡時にご案内します）', modes: ['対面', 'オンライン'], months: [1, 2, 3] }
+  ];
+
+  /* 開催日が決まった講座はここに日付を追加すると、日付の選択肢になる
+     例）amazake: ['2026-12-10', '2026-12-17'] */
+  var SCHEDULE = {
+  };
+
+  var LINE_ID = '@dls2613o';
+  var WEEK = ['日', '月', '火', '水', '木', '金', '土'];
+  var selected = [];   // 選ばれた講座 id（選んだ順）
+  var state = {};      // id -> { date, slot, people, mode }
+
+  function byId(id) { for (var i = 0; i < COURSES.length; i++) if (COURSES[i].id === id) return COURSES[i]; }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function jpDate(v) {
+    var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return p[0] + '年' + (+p[1]) + '月' + (+p[2]) + '日（' + WEEK[d.getDay()] + '）';
+  }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  /* 季節限定講座は、明日以降で最初に来る開催月の期間だけ選べるようにする */
+  function dateRange(c) {
+    var t = new Date(); t.setHours(0, 0, 0, 0); t.setDate(t.getDate() + 1);
+    if (!c.months) return { min: iso(t) };
+    var d = new Date(t);
+    for (var i = 0; i < 400 && c.months.indexOf(d.getMonth() + 1) < 0; i++) d.setDate(d.getDate() + 1);
+    var end = new Date(d);
+    while (c.months.indexOf(end.getMonth() + 1) >= 0) end.setDate(end.getDate() + 1);
+    end.setDate(end.getDate() - 1);
+    return { min: iso(d), max: iso(end) };
+  }
+
+  function renderList() {
+    var html = '', last = '';
+    COURSES.forEach(function (c) {
+      if (c.group !== last) { if (last) html += '</div>'; html += '<div class="apply-group-ttl">' + c.group + '</div><div class="course-btns">'; last = c.group; }
+      var on = selected.indexOf(c.id) >= 0;
+      var tags = c.modes.length > 1
+        ? '<span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span>'
+        : '<span class="mode-tag onsite">🏠 対面のみ</span>';
+      html += '<button type="button" class="course-btn" data-id="' + c.id + '" aria-pressed="' + on + '">' +
+        '<span>' + c.name + '<small>' + c.sub + '</small><span class="mode">' + tags + '</span></span>' +
+        '<span class="pick">' + (on ? '✓ 選択中' : '選ぶ') + '</span></button>';
+    });
+    document.getElementById('courseList').innerHTML = html + '</div>';
+  }
+
+  function renderDetails() {
+    var box = document.getElementById('details');
+    document.getElementById('addMore').hidden = selected.length === 0;
+    if (!selected.length) { box.innerHTML = '<div class="detail-empty">STEP 1 で講座を選ぶと、ここに表示されます</div>'; return; }
+    box.innerHTML = selected.map(function (id) {
+      var c = byId(id), st = state[id], r = dateRange(c), h = '';
+      var dateLbl = c.label ? c.label + 'のご希望日' : 'ご希望の日にち';
+      h += '<div class="detail-card" data-id="' + id + '"><div class="detail-head"><h3>' + c.name + (c.label ? '（' + c.label + '）' : '') + '<small>' + c.sub + '</small></h3>' +
+           '<button type="button" class="detail-remove" data-remove="' + id + '">✕ 取り消す</button></div>';
+      if (SCHEDULE[id] && SCHEDULE[id].length) {
+        h += '<div class="field"><div class="field-lbl">' + dateLbl + '<span class="req">必須</span></div><div class="choices">' +
+          SCHEDULE[id].map(function (v) { return '<label class="choice"><input type="radio" name="date-' + id + '" value="' + v + '"' + (st.date === v ? ' checked' : '') + '><span>' + jpDate(v) + '</span></label>'; }).join('') + '</div></div>';
+      } else {
+        h += '<div class="field"><label for="date-' + id + '">' + dateLbl + '<span class="req">必須</span></label>' +
+          '<input type="date" id="date-' + id + '" data-key="date" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + (st.date || '') + '">' +
+          (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '<span class="hint">日にちをタップするとカレンダーが開きます</span>') + '</div>';
+      }
+      if (c.time) {
+        h += '<div class="field"><div class="field-lbl">時間</div><div class="fixed-time">' + c.time + '</div></div>';
+      } else {
+        h += '<div class="field"><div class="field-lbl">ご希望の時間帯<span class="req">必須</span></div><div class="choices">' +
+          ['午前', '午後', '夕方以降'].map(function (v) { return '<label class="choice"><input type="radio" name="slot-' + id + '" value="' + v + '"' + (st.slot === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></div>';
+      }
+      if (!c.solo) {
+        h += '<div class="field"><label for="people-' + id + '">人数</label><select id="people-' + id + '" data-key="people">' +
+          [1, 2, 3, 4, 5, 6].map(function (n) { return '<option value="' + n + '"' + (st.people == n ? ' selected' : '') + '>' + n + '名</option>'; }).join('') + '</select></div>';
+      }
+      if (c.modes.length > 1) {
+        h += '<div class="field"><div class="field-lbl">受講方法</div><div class="choices">' +
+          c.modes.map(function (m) { return '<label class="choice"><input type="radio" name="mode-' + id + '" value="' + m + '"' + (st.mode === m ? ' checked' : '') + '><span>' + (m === '対面' ? '🏠 ' : '💻 ') + m + '</span></label>'; }).join('') + '</div></div>';
+      } else {
+        h += '<div class="field"><div class="field-lbl">受講方法</div><div class="fixed-time">🏠 対面のみ</div></div>';
+      }
+      return h + '</div>';
+    }).join('');
+  }
+
+  function buildMessage() {
+    var lines = ['【お申し込み】'];
+    selected.forEach(function (id) {
+      var c = byId(id), st = state[id];
+      lines.push('');
+      lines.push('■' + c.name + (c.label ? '（' + c.label + '）' : ''));
+      lines.push((c.label ? c.label + 'のご希望日：' : '日にち：') + (st.date ? jpDate(st.date) : '未選択'));
+      lines.push(c.time ? '時間：' + c.time : 'ご希望の時間帯：' + (st.slot || '未選択'));
+      if (!c.solo) lines.push('人数：' + st.people + '名');
+      lines.push('受講方法：' + st.mode);
+    });
+    lines.push('');
+    lines.push('お名前：' + document.getElementById('name').value.trim());
+    var note = document.getElementById('note').value.trim();
+    if (note) lines.push('ご質問・ご要望：' + note);
+    lines.push('');
+    lines.push('※このまま送信してください。内容を確認してご連絡した時点で、お申し込み完了となります。');
+    return lines.join('\n');
+  }
+
+  function missing() {
+    var m = [];
+    if (!selected.length) m.push('講座を選んでください');
+    selected.forEach(function (id) {
+      var c = byId(id), st = state[id];
+      if (!st.date) m.push(c.name + 'の日にちを選んでください');
+      if (!c.time && !st.slot) m.push(c.name + 'の時間帯を選んでください');
+    });
+    if (!document.getElementById('name').value.trim()) m.push('お名前を入力してください');
+    return m;
+  }
+
+  function update() {
+    var text = buildMessage(), m = missing(), btn = document.getElementById('sendBtn');
+    document.getElementById('preview').textContent = selected.length ? text : '講座を選ぶと、ここに表示されます';
+    btn.href = 'https://line.me/R/oaMessage/' + LINE_ID + '/?' + encodeURIComponent(text);
+    btn.setAttribute('aria-disabled', m.length ? 'true' : 'false');
+    document.getElementById('sendMsg').textContent = '';
+    document.getElementById('barCount').textContent = selected.length ? selected.length + '講座を選択中' : '講座を選んでください';
+  }
+
+  function toggle(id, on) {
+    var i = selected.indexOf(id);
+    if (on && i < 0) { selected.push(id); if (!state[id]) state[id] = { date: '', slot: '', people: 1, mode: byId(id).modes[0] }; }
+    if (!on && i >= 0) selected.splice(i, 1);
+    renderList(); renderDetails(); update();
+  }
+
+  document.getElementById('courseList').addEventListener('click', function (e) {
+    var b = e.target.closest('.course-btn'); if (!b) return;
+    var id = b.getAttribute('data-id'), on = selected.indexOf(id) < 0;
+    toggle(id, on);
+    if (on) document.querySelector('.detail-card[data-id="' + id + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  document.getElementById('details').addEventListener('click', function (e) {
+    var r = e.target.closest('[data-remove]'); if (r) toggle(r.getAttribute('data-remove'), false);
+  });
+  document.getElementById('details').addEventListener('change', function (e) {
+    var card = e.target.closest('.detail-card'); if (!card) return;
+    var st = state[card.getAttribute('data-id')], t = e.target;
+    if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
+    else if (t.name) st[t.name.split('-')[0]] = t.value;
+    update();
+  });
+  document.getElementById('addMore').addEventListener('click', function () {
+    document.getElementById('step1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  ['name', 'note'].forEach(function (id) { document.getElementById(id).addEventListener('input', update); });
+  document.getElementById('sendBtn').addEventListener('click', function (e) {
+    var m = missing();
+    if (m.length) { e.preventDefault(); document.getElementById('sendMsg').textContent = m[0]; }
+  });
+
+  /* 講座ページから来たとき（apply.html?c=amazake）はその講座を選んだ状態にする */
+  var pre = (location.search.match(/[?&]c=([a-z]+)/) || [])[1];
+  renderList();
+  if (pre && byId(pre)) { toggle(pre, true); setTimeout(function () { document.getElementById('step2').scrollIntoView({ block: 'start' }); }, 50); }
+  else { renderDetails(); update(); }
+</script>
 <script>
   var hamburger = document.getElementById('hamburger');
   var mobileNav = document.getElementById('mobileNav');
