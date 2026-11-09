@@ -25,8 +25,14 @@ jobs:
           git archive HEAD | tar -x -C _site
           rm -rf _site/.github
 
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} --branch=main --commit-dirty=true
+      # 登録時に紛れ込みやすい前後の空白・改行を取り除いてから公開する
+      - name: Deploy
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$TOKEN" | tr -d '[:space:]')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$ACCOUNT" | tr -d '[:space:]')"
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "::error::CLOUDFLARE_API_TOKEN が登録されていません"; exit 1; fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then echo "::error::CLOUDFLARE_ACCOUNT_ID が登録されていません"; exit 1; fi
+          npx --yes wrangler@4 pages deploy _site --project-name=serendipity --branch=main --commit-dirty=true
