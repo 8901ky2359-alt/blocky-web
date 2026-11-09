@@ -290,6 +290,7 @@
     .date-wrap.has-value .date-ph { display: none; }
     .date-wrap:not(.has-value) input[type=date] { color: transparent; }
     .date-picked { font-size: .95rem; font-weight: 700; color: var(--dark); }
+    .date-field { padding-left: 12px; border-left: 3px solid #fbd9bf; }
     .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--orange); }
     .field .hint { font-size: .78rem; color: var(--gray); }
     .fixed-time { font-size: 1rem; font-weight: 700; background: var(--cream); padding: 10px 14px; border-radius: 4px; }
@@ -605,15 +606,21 @@
       var dateLbl = c.label ? c.label + 'のご希望日' : 'ご希望の日にち';
       h += '<div class="detail-card" data-id="' + id + '"><div class="detail-head"><h3>' + c.name + (c.label ? '（' + c.label + '）' : '') + '<small>' + c.sub + '</small></h3>' +
            '<button type="button" class="detail-remove" data-remove="' + id + '">✕ 取り消す</button></div>';
-      if (SCHEDULE[id] && SCHEDULE[id].length) {
-        h += '<div class="field"><div class="field-lbl">' + dateLbl + '<span class="req">必須</span></div><div class="choices">' +
-          SCHEDULE[id].map(function (v) { return '<label class="choice"><input type="radio" name="date-' + id + '" value="' + v + '"' + (st.date === v ? ' checked' : '') + '><span>' + jpDate(v) + '</span></label>'; }).join('') + '</div></div>';
-      } else {
-        h += '<div class="field"><label for="date-' + id + '">' + dateLbl + '<span class="req">必須</span></label>' +
-          '<div class="date-wrap' + (st.date ? ' has-value' : '') + '"><input type="date" id="date-' + id + '" data-key="date" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + (st.date || '') + '">' +
-          '<span class="date-ph">📅 ここをタップして日にちを選ぶ</span></div>' +
-          '<span class="date-picked">' + (st.date ? '選択中：' + jpDate(st.date) : '') + '</span>' +
-          (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '') + '</div>';
+      /* 希望日は第1〜第3希望まで。第1希望だけ必須 */
+      h += '<div class="field"><div class="field-lbl">' + dateLbl + '</div>' +
+        (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '') + '</div>';
+      for (var i = 0; i < 3; i++) {
+        var v = st.dates[i], lbl = '第' + (i + 1) + '希望' + (i === 0 ? '<span class="req">必須</span>' : '<span class="opt">任意</span>');
+        if (SCHEDULE[id] && SCHEDULE[id].length) {
+          h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
+            '<select id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '"><option value="">選んでください</option>' +
+            SCHEDULE[id].map(function (d) { return '<option value="' + d + '"' + (v === d ? ' selected' : '') + '>' + jpDate(d) + '</option>'; }).join('') + '</select></div>';
+        } else {
+          h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
+            '<div class="date-wrap' + (v ? ' has-value' : '') + '"><input type="date" id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + v + '">' +
+            '<span class="date-ph">📅 タップして日にちを選ぶ</span></div>' +
+            '<span class="date-picked">' + (v ? '選択中：' + jpDate(v) : '') + '</span></div>';
+        }
       }
       if (c.time) {
         h += '<div class="field"><div class="field-lbl">時間</div><div class="fixed-time">' + c.time + '</div></div>';
@@ -643,7 +650,9 @@
       var c = byId(id), st = state[id];
       lines.push('');
       lines.push('■' + c.name + (c.label ? '（' + c.label + '）' : ''));
-      lines.push((c.label ? c.label + 'のご希望日：' : '日にち：') + (st.date ? jpDate(st.date) : '未選択'));
+      st.dates.forEach(function (d, i) {
+        if (d || i === 0) lines.push('第' + (i + 1) + '希望：' + (d ? jpDate(d) : '未選択'));
+      });
       lines.push(c.time ? '時間：' + c.time : 'ご希望の時間帯：' + (st.slot || '未選択'));
       if (!c.solo) lines.push('人数：' + st.people + '名');
       if (!c.solo && st.people > 1 && st.with && st.with.trim()) lines.push('ご一緒の方：' + st.with.trim());
@@ -664,7 +673,10 @@
     if (!selected.length) m.push(['講座を選んでください', 1, document.getElementById('courseList')]);
     selected.forEach(function (id) {
       var c = byId(id), st = state[id], card = document.querySelector('.detail-card[data-id="' + id + '"]');
-      if (!st.date) m.push([c.name + 'の日にちを選んでください', 2, card]);
+      var cardDate = card && card.querySelector('.date-field');
+      if (!st.dates[0]) m.push([c.name + 'の第1希望の日にちを選んでください', 2, cardDate || card]);
+      var filled = st.dates.filter(Boolean);
+      if (filled.some(function (d, i) { return filled.indexOf(d) !== i; })) m.push([c.name + 'の希望日が同じ日になっています。別の日を選んでください', 2, cardDate || card]);
       if (!c.time && !st.slot) m.push([c.name + 'の時間帯を選んでください', 2, card]);
     });
     if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', 3, document.getElementById('name')]);
@@ -723,7 +735,7 @@
 
   function toggle(id, on) {
     var i = selected.indexOf(id);
-    if (on && i < 0) { selected.push(id); if (!state[id]) state[id] = { date: '', slot: '', people: 1, mode: byId(id).modes[0] }; }
+    if (on && i < 0) { selected.push(id); if (!state[id]) state[id] = { dates: ['', '', ''], slot: '', people: 1, mode: byId(id).modes[0] }; }
     if (!on && i >= 0) selected.splice(i, 1);
     renderList(); renderDetails(); update();
   }
@@ -739,12 +751,13 @@
   document.getElementById('details').addEventListener('change', function (e) {
     var card = e.target.closest('.detail-card'); if (!card) return;
     var st = state[card.getAttribute('data-id')], t = e.target;
-    if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
+    if (t.getAttribute('data-key') === 'date') st.dates[+t.getAttribute('data-i')] = t.value;
+    else if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
     else if (t.name) st[t.name.split('-')[0]] = t.value;
     if (t.getAttribute('data-key') === 'people') card.querySelector('[data-companion]').hidden = +t.value < 2;
-    if (t.getAttribute('data-key') === 'date') {
+    if (t.getAttribute('data-key') === 'date' && t.type === 'date') {
       t.parentNode.className = 'date-wrap' + (t.value ? ' has-value' : '');
-      card.querySelector('.date-picked').textContent = t.value ? '選択中：' + jpDate(t.value) : '';
+      t.closest('.date-field').querySelector('.date-picked').textContent = t.value ? '選択中：' + jpDate(t.value) : '';
     }
     update();
   });
