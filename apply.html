@@ -253,7 +253,19 @@
     .pick { flex-shrink: 0; min-width: 76px; text-align: center; font-size: .8rem; font-weight: 700; padding: 9px 10px; border: 2px solid var(--orange); color: var(--orange); border-radius: 4px; line-height: 1.2; }
     .course-btn[aria-pressed="true"] .pick { background: var(--orange); color: #fff; }
 
-    .apply-group, .detail-card { scroll-margin-top: 84px; }
+    [hidden] { display: none !important; }
+    .apply-group, .detail-card, .field { scroll-margin-top: 150px; }
+
+    /* ── PROGRESS ── */
+    .progress { list-style: none; display: flex; position: sticky; top: 64px; z-index: 150; background: var(--white); border-bottom: 1px solid var(--border); }
+    .progress li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 2px 9px; font-size: .74rem; font-weight: 700; color: var(--gray2); border-bottom: 3px solid transparent; }
+    .progress b { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #ece6df; color: var(--gray); font-size: .85rem; }
+    .progress li.done { color: var(--orange); }
+    .progress li.done b { background: #fbd9bf; color: var(--orange2); }
+    .progress li.now { color: var(--dark); border-bottom-color: var(--orange); }
+    .progress li.now b { background: var(--orange); color: #fff; }
+    .step-next { display: block; width: 100%; margin-top: 8px; background: var(--orange); color: #fff; border: none; border-radius: 6px; padding: 18px; font: 700 1.05rem/1 'Noto Sans JP',sans-serif; cursor: pointer; }
+    .picked-note { font-size: .88rem; font-weight: 700; color: var(--orange2); background: #fff4ec; padding: 10px 14px; border-radius: 4px; }
     /* ── DETAIL (STEP 2) ── */
     .detail-empty { background: var(--white); border: 2px dashed var(--border); padding: 22px; text-align: center; font-size: .9rem; color: var(--gray); }
     .detail-card { background: var(--white); border: 2px solid var(--orange); padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
@@ -266,10 +278,18 @@
     .req { display: inline-block; margin-left: 6px; font-size: .68rem; color: #fff; background: #dc2626; padding: 2px 6px; border-radius: 3px; vertical-align: 1px; }
     .opt { display: inline-block; margin-left: 6px; font-size: .68rem; color: var(--gray); background: #f1ede8; padding: 2px 6px; border-radius: 3px; vertical-align: 1px; }
     .field input[type=date], .field input[type=text], .field select, .field textarea {
-      width: 100%; font: 500 1.05rem/1.4 'Noto Sans JP',sans-serif; color: var(--dark);
+      display: block; width: 100%; max-width: 100%; min-width: 0; font: 500 1.05rem/1.4 'Noto Sans JP',sans-serif; color: var(--dark);
       background: #fff; border: 2px solid var(--border); padding: 12px 14px; border-radius: 4px; min-height: 52px;
     }
     .field textarea { min-height: 90px; resize: vertical; }
+    /* iPhone の日付欄は幅が固定されてはみ出すので、見た目の既定値を外す */
+    .field input[type=date] { -webkit-appearance: none; appearance: none; text-align: left; }
+    .field input[type=date]::-webkit-date-and-time-value { text-align: left; }
+    .date-wrap { position: relative; }
+    .date-ph { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 1rem; font-weight: 700; color: var(--orange); }
+    .date-wrap.has-value .date-ph { display: none; }
+    .date-wrap:not(.has-value) input[type=date] { color: transparent; }
+    .date-picked { font-size: .95rem; font-weight: 700; color: var(--dark); }
     .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--orange); }
     .field .hint { font-size: .78rem; color: var(--gray); }
     .fixed-time { font-size: 1rem; font-weight: 700; background: var(--cream); padding: 10px 14px; border-radius: 4px; }
@@ -287,13 +307,14 @@
     .send-btn[aria-disabled="true"] { background: #b7c4bc; box-shadow: none; }
     .send-msg { font-size: .85rem; color: #dc2626; font-weight: 700; min-height: 1.2em; }
     .send-note { font-size: .82rem; color: var(--gray); line-height: 1.7; }
-    .preview { text-align: left; background: #f6f6f6; border-radius: 6px; padding: 14px 16px; font-size: .8rem; line-height: 1.7; white-space: pre-wrap; color: #444; max-height: 260px; overflow: auto; }
+    .preview { text-align: left; background: #f6f6f6; border-radius: 6px; padding: 14px 16px; font-size: .8rem; line-height: 1.7; white-space: pre-wrap; color: #444; }
     .preview-lbl { text-align: left; font-size: .78rem; font-weight: 700; color: var(--gray); }
 
     /* ── STICKY BAR ── */
     .fixed-bar-apply.line { background: var(--line); }
     .fixed-bar-apply.line:hover { background: #05a948; }
-    .fixed-bar-count { flex: 1; display: flex; align-items: center; justify-content: center; font: 700 .9rem/1.3 'Noto Sans JP',sans-serif; padding: 0 12px; text-align: center; border-right: 1px solid var(--border); }
+    button.fixed-bar-back { border: none; border-right: 1px solid var(--border); cursor: pointer; }
+    .fixed-bar-apply.next { background: var(--orange); }
 
     /* ── LINE ── */
     .line-card { background: #f0fbf4; border: 2px solid #bfe9cd; padding: 28px 32px; display: flex; flex-direction: column; gap: 12px; }
@@ -371,11 +392,19 @@
 <div class="page-hero">
   <div class="page-hero-en">Application</div>
   <h1>お申し込み</h1>
-  <p class="page-hero-sub">講座と日にちを選んで「LINEで申し込む」を押すと、<br>選んだ内容が入力された状態でLINEが開きます。</p>
+  <p class="page-hero-sub">4つのステップで、かんたんにお申し込みできます。<br>最後に、選んだ内容が入ったLINEが開きます。</p>
 </div>
 
+<!-- PROGRESS -->
+<ol class="progress" id="progress">
+  <li data-s="1"><b>1</b>講座</li>
+  <li data-s="2"><b>2</b>日にち</li>
+  <li data-s="3"><b>3</b>お名前</li>
+  <li data-s="4"><b>4</b>確認・送信</li>
+</ol>
+
 <!-- FLOW -->
-<section class="flow">
+<section class="flow" id="flow">
   <div class="sec-label">Flow</div>
   <h2 class="sec-ttl">お申し込みの流れ</h2>
   <ol class="flow-steps">
@@ -392,8 +421,10 @@
   <section class="apply-group" id="step1">
     <div class="sec-label">Step 1</div>
     <h2 class="sec-ttl">受けたい講座を選んでください</h2>
-    <p class="step-lead">タップすると選択されます。いくつでも選べます。</p>
+    <p class="step-lead">タップすると選択されます。いくつでも選べます。<br>選んだら、いちばん下の「次へ」を押してください。</p>
     <div id="courseList"></div>
+    <p class="picked-note" id="pickedNote" hidden></p>
+    <button type="button" class="step-next" data-next>次へ（日にちを選ぶ）→</button>
   </section>
 
   <!-- STEP 2 -->
@@ -401,7 +432,8 @@
     <div class="sec-label">Step 2</div>
     <h2 class="sec-ttl">日にち・人数を選んでください</h2>
     <div id="details"><div class="detail-empty">STEP 1 で講座を選ぶと、ここに表示されます</div></div>
-    <button type="button" class="add-more" id="addMore" hidden>＋ ほかの講座も一緒に申し込む</button>
+    <button type="button" class="add-more" id="addMore" hidden>＋ ほかの講座も追加する</button>
+    <button type="button" class="step-next" data-next>次へ（お名前を入力）→</button>
   </section>
 
   <!-- STEP 3 -->
@@ -418,18 +450,19 @@
         <textarea id="note" placeholder="例）アレルギーがあります、駐車場はありますか など"></textarea>
       </div>
     </div>
+    <button type="button" class="step-next" data-next>次へ（内容を確認）→</button>
   </section>
 
   <!-- STEP 4 -->
   <section class="apply-group" id="step4">
     <div class="sec-label">Step 4</div>
-    <h2 class="sec-ttl">LINEで送信</h2>
+    <h2 class="sec-ttl">内容を確認して、LINEで送信</h2>
     <div class="send-box">
+      <div class="preview-lbl">お申し込み内容（このままLINEに入力されます）</div>
+      <div class="preview" id="preview"></div>
       <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" rel="noopener" class="send-btn" id="sendBtn" aria-disabled="true">LINEで申し込む</a>
       <p class="send-msg" id="sendMsg" role="status"></p>
-      <p class="send-note">LINEが開いたら、内容を確認して<strong>そのまま送信</strong>してください。<br>内容を確認してご連絡した時点で、お申し込み完了となります。</p>
-      <div class="preview-lbl">LINEに入力される内容</div>
-      <div class="preview" id="preview"></div>
+      <p class="send-note">LINEが開いたら、<strong>そのまま送信</strong>してください。<br>内容を確認してご連絡した時点で、お申し込み完了となります。<br>内容を直すときは、下の「戻る」を押してください。</p>
     </div>
   </section>
 
@@ -443,7 +476,7 @@
 </div>
 
 <!-- CANCEL POLICY -->
-<div class="cancel-section">
+<div class="cancel-section" id="cancel">
   <div class="cancel-box">
     <div class="cancel-heading-en">Cancellation Policy</div>
     <div class="cancel-heading">キャンセルポリシー</div>
@@ -497,8 +530,8 @@
 
 <!-- FIXED BOTTOM BAR -->
 <div class="fixed-bar">
-  <div class="fixed-bar-count" id="barCount">講座を選んでください</div>
-  <a href="#step4" class="fixed-bar-apply line" id="barBtn">LINEで申し込む</a>
+  <button type="button" class="fixed-bar-back" id="barBack">← 戻る</button>
+  <a href="#" class="fixed-bar-apply next" id="barBtn">次へ →</a>
 </div>
 
 <script>
@@ -577,8 +610,10 @@
           SCHEDULE[id].map(function (v) { return '<label class="choice"><input type="radio" name="date-' + id + '" value="' + v + '"' + (st.date === v ? ' checked' : '') + '><span>' + jpDate(v) + '</span></label>'; }).join('') + '</div></div>';
       } else {
         h += '<div class="field"><label for="date-' + id + '">' + dateLbl + '<span class="req">必須</span></label>' +
-          '<input type="date" id="date-' + id + '" data-key="date" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + (st.date || '') + '">' +
-          (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '<span class="hint">日にちをタップするとカレンダーが開きます</span>') + '</div>';
+          '<div class="date-wrap' + (st.date ? ' has-value' : '') + '"><input type="date" id="date-' + id + '" data-key="date" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + (st.date || '') + '">' +
+          '<span class="date-ph">📅 ここをタップして日にちを選ぶ</span></div>' +
+          '<span class="date-picked">' + (st.date ? '選択中：' + jpDate(st.date) : '') + '</span>' +
+          (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '') + '</div>';
       }
       if (c.time) {
         h += '<div class="field"><div class="field-lbl">時間</div><div class="fixed-time">' + c.time + '</div></div>';
@@ -623,26 +658,67 @@
     return lines.join('\n');
   }
 
-  /* 足りない項目を [メッセージ, 移動先の要素] の形で返す */
+  /* 足りない項目を [メッセージ, ステップ番号, 移動先の要素] の形で返す */
   function missing() {
     var m = [];
-    if (!selected.length) m.push(['講座を選んでください', document.getElementById('step1')]);
+    if (!selected.length) m.push(['講座を選んでください', 1, document.getElementById('courseList')]);
     selected.forEach(function (id) {
       var c = byId(id), st = state[id], card = document.querySelector('.detail-card[data-id="' + id + '"]');
-      if (!st.date) m.push([c.name + 'の日にちを選んでください', card]);
-      if (!c.time && !st.slot) m.push([c.name + 'の時間帯を選んでください', card]);
+      if (!st.date) m.push([c.name + 'の日にちを選んでください', 2, card]);
+      if (!c.time && !st.slot) m.push([c.name + 'の時間帯を選んでください', 2, card]);
     });
-    if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', document.getElementById('name')]);
+    if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', 3, document.getElementById('name')]);
     return m;
   }
 
+  /* ── ステップの切り替え ── */
+  var step = 1;
+  function go(n, how) {
+    step = n;
+    for (var i = 1; i <= 4; i++) document.getElementById('step' + i).hidden = i !== n;
+    document.getElementById('flow').hidden = n !== 1;
+    document.getElementById('cancel').hidden = n !== 4;
+    [].forEach.call(document.querySelectorAll('#progress li'), function (li) {
+      var k = +li.getAttribute('data-s');
+      li.className = k === n ? 'now' : (k < n ? 'done' : '');
+    });
+    var back = document.getElementById('barBack');
+    back.textContent = n === 1 ? '← トップに戻る' : '← 戻る';
+    if (how === 'push') history.pushState({ step: n }, '', '#step' + n);
+    if (how === 'replace') history.replaceState({ step: n }, '', location.pathname + location.search + '#step' + n);
+    update();
+    /* 最初の表示はページの先頭、ステップを進めたときはステップの頭（進み具合の帯の下）を表示する */
+    if (how === 'replace') window.scrollTo(0, 0);
+    else window.scrollTo(0, document.getElementById('progress').offsetTop - 64);
+  }
+  /* 今のステップに足りない項目があればお知らせして、その場所へ移動する */
+  function blockedHere(upTo) {
+    var m = missing().filter(function (x) { return x[1] <= upTo; });
+    if (!m.length) return false;
+    alert(m[0][0]);
+    if (m[0][1] !== step) go(m[0][1], 'push');
+    var el = m[0][2];
+    setTimeout(function () {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (el.id === 'name') el.focus();
+    }, 300);
+    return true;
+  }
+  function next() { if (!blockedHere(step)) go(step + 1, 'push'); }
+
   function update() {
-    var text = buildMessage(), m = missing(), btn = document.getElementById('sendBtn');
-    document.getElementById('preview').textContent = selected.length ? text : '講座を選ぶと、ここに表示されます';
-    btn.href = 'https://line.me/R/oaMessage/' + LINE_ID + '/?' + encodeURIComponent(text);
+    var text = buildMessage(), m = missing(), btn = document.getElementById('sendBtn'), bar = document.getElementById('barBtn');
+    var url = 'https://line.me/R/oaMessage/' + LINE_ID + '/?' + encodeURIComponent(text);
+    document.getElementById('preview').textContent = text;
+    btn.href = url;
     btn.setAttribute('aria-disabled', m.length ? 'true' : 'false');
     document.getElementById('sendMsg').textContent = '';
-    document.getElementById('barCount').textContent = selected.length ? selected.length + '講座を選択中' : '講座を選んでください';
+    var note = document.getElementById('pickedNote');
+    note.hidden = !selected.length;
+    note.textContent = '選択中：' + selected.map(function (id) { return byId(id).name; }).join('、');
+    /* 画面下の右ボタン：STEP 1〜3 は「次へ」、STEP 4 は LINE を開くリンク */
+    if (step === 4) { bar.href = url; bar.target = '_blank'; bar.className = 'fixed-bar-apply line'; bar.textContent = 'LINEで申し込む'; }
+    else { bar.href = '#'; bar.removeAttribute('target'); bar.className = 'fixed-bar-apply next'; bar.textContent = '次へ →'; }
   }
 
   function toggle(id, on) {
@@ -656,7 +732,6 @@
     var b = e.target.closest('.course-btn'); if (!b) return;
     var id = b.getAttribute('data-id'), on = selected.indexOf(id) < 0;
     toggle(id, on);
-    if (on) document.querySelector('.detail-card[data-id="' + id + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
   document.getElementById('details').addEventListener('click', function (e) {
     var r = e.target.closest('[data-remove]'); if (r) toggle(r.getAttribute('data-remove'), false);
@@ -667,35 +742,42 @@
     if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
     else if (t.name) st[t.name.split('-')[0]] = t.value;
     if (t.getAttribute('data-key') === 'people') card.querySelector('[data-companion]').hidden = +t.value < 2;
+    if (t.getAttribute('data-key') === 'date') {
+      t.parentNode.className = 'date-wrap' + (t.value ? ' has-value' : '');
+      card.querySelector('.date-picked').textContent = t.value ? '選択中：' + jpDate(t.value) : '';
+    }
     update();
   });
   document.getElementById('details').addEventListener('input', function (e) {
     var card = e.target.closest('.detail-card');
     if (card && e.target.getAttribute('data-key') === 'with') { state[card.getAttribute('data-id')].with = e.target.value; update(); }
   });
-  document.getElementById('addMore').addEventListener('click', function () {
-    document.getElementById('step1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  document.getElementById('addMore').addEventListener('click', function () { go(1, 'push'); });
+  [].forEach.call(document.querySelectorAll('[data-next]'), function (b) { b.addEventListener('click', next); });
   document.getElementById('barBtn').addEventListener('click', function (e) {
-    if (missing().length) return;   // 足りないときは STEP 4 へ移動して確認してもらう
-    e.preventDefault(); document.getElementById('sendBtn').click();
+    if (step < 4) { e.preventDefault(); next(); return; }
+    if (blockedHere(3)) e.preventDefault();
+  });
+  document.getElementById('barBack').addEventListener('click', function () {
+    if (step === 1) location.href = 'index.html'; else history.back();
+  });
+  window.addEventListener('popstate', function (e) {
+    var n = (e.state && e.state.step) || +((location.hash.match(/step(\d)/) || [])[1]) || 1;
+    go(n);
   });
   ['name', 'note'].forEach(function (id) { document.getElementById(id).addEventListener('input', update); });
   document.getElementById('sendBtn').addEventListener('click', function (e) {
-    var m = missing();
-    if (!m.length) return;
-    e.preventDefault();
-    document.getElementById('sendMsg').textContent = m[0][0];
-    alert(m[0][0]);
-    m[0][1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (m[0][1].id === 'name') setTimeout(function () { m[0][1].focus(); }, 400);
+    if (blockedHere(3)) e.preventDefault();
   });
 
   /* 講座ページから来たとき（apply.html?c=amazake）はその講座を選んだ状態にする */
   var pre = (location.search.match(/[?&]c=([a-z]+)/) || [])[1];
   renderList();
-  if (pre && byId(pre)) { toggle(pre, true); setTimeout(function () { document.getElementById('step2').scrollIntoView({ block: 'start' }); }, 50); }
-  else { renderDetails(); update(); }
+  if (pre && byId(pre)) {
+    toggle(pre, true);
+    history.replaceState({ step: 1 }, '', location.pathname + location.search + '#step1');
+    go(2, 'push');   // 戻るで講座選びに戻れるよう、STEP 1 を履歴に残しておく
+  } else { renderDetails(); go(1, 'replace'); }
 </script>
 <script>
   var hamburger = document.getElementById('hamburger');
