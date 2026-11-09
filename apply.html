@@ -244,6 +244,9 @@
     }
     .course-btn:hover { border-color: var(--orange); background: #fff8f2; }
     .course-btn small { display: block; font-size: .72rem; font-weight: 500; color: var(--gray2); margin-top: 2px; }
+    .mode { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .mode-tag { display: inline-block; font-size: .7rem; font-weight: 700; line-height: 1; padding: 4px 7px; background: #fff4ec; color: var(--orange2); border-radius: 3px; }
+    .mode-tag.onsite { background: #f1ede8; color: var(--gray); }
     .course-btn-go { flex-shrink: 0; color: var(--orange); font-size: .8rem; white-space: nowrap; }
 
     /* ── LINE ── */
@@ -322,7 +325,7 @@
 <div class="page-hero">
   <div class="page-hero-en">Application</div>
   <h1>お申し込み</h1>
-  <p class="page-hero-sub">受けたい講座のボタンを押すと、お申し込みフォームが開きます</p>
+  <p class="page-hero-sub">受けたい講座のボタンを押すと、お申し込みフォームが開きます<br>💻 オンライン・🏠 対面のどちらで受けられるかも、各講座に記載しています</p>
 </div>
 
 <!-- FLOW -->
@@ -346,25 +349,25 @@
 
     <div class="apply-group-ttl">単発講座</div>
     <div class="course-btns">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>甘酒講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>白みそ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>豆腐講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>発酵あんこ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>キムチ講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>ぬか漬け講座<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>おうちCafe<small>単発講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>甘酒講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>白みそ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>豆腐講座<small>単発講座</small><span class="mode"><span class="mode-tag onsite">🏠 対面のみ</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>発酵あんこ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>キムチ講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>ぬか漬け講座<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>おうちCafe<small>単発講座</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
     </div>
 
     <div class="apply-group-ttl">継続レッスン・養成講座</div>
     <div class="course-btns">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>体質改善パーソナルレッスン<small>継続レッスン・6ヶ月コース</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>腸活マイスター養成講座<small>養成講座</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>体質改善パーソナルレッスン<small>継続レッスン・6ヶ月コース</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="course-btn"><span>腸活マイスター養成講座<small>養成講座</small><span class="mode"><span class="mode-tag">説明会：💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
     </div>
 
     <div class="apply-group-ttl">季節限定講座（開催時期が限られています）</div>
     <div class="course-btns">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>梅干し講座<small>季節限定・毎年7月</small></span><span class="course-btn-go">申し込む →</span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>お味噌仕込み講座<small>季節限定・1〜3月</small></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>梅干し講座<small>季節限定・毎年7月</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOImRQkJdK2W8jjRSgeTyAMJdx81Dyb8Y8slgn9yYaZgrPGg/viewform" target="_blank" class="course-btn"><span>お味噌仕込み講座<small>季節限定・1〜3月</small><span class="mode"><span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span></span></span><span class="course-btn-go">申し込む →</span></a>
     </div>
   </div>
 
