@@ -76,6 +76,11 @@
     .apply-flow li { display: flex; align-items: center; gap: 4px; }
     .apply-flow li:not(:last-child)::after { content: '→'; color: var(--orange); margin-left: 4px; }
     .apply-flow b { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--orange); color: #fff; font-size: .68rem; }
+    .apply-btn.line { background: #06c755; box-shadow: 0 4px 20px rgba(6,199,85,.35); }
+    .apply-btn.line:hover { box-shadow: 0 8px 28px rgba(6,199,85,.4); }
+    .apply-howto { margin-top: 12px; font-size: .84rem; color: var(--dark); line-height: 1.7; }
+    .lesson-bar-apply.line { background: #06c755; }
+    .lesson-bar-apply.line:hover { background: #05a948; }
     .apply-note { margin-top: 14px; font-size: .84rem; color: var(--gray); }
     .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: .84rem; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
     .back-link:hover { color: var(--orange); border-color: var(--orange); }
@@ -203,11 +208,11 @@
 
     <div class="apply-wrap">
       <p class="apply-ttl">まずは無料相談から</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn">お申し込みはこちら</a>
+      <a href="https://line.me/R/oaMessage/@dls2613o/?%E4%BD%93%E8%B3%AA%E6%94%B9%E5%96%84%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AB%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%81%AE%E7%84%A1%E6%96%99%E7%9B%B8%E8%AB%87%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%97%E3%81%BE%E3%81%99" target="_blank" class="apply-btn line">LINEで申し込む</a>
+      <p class="apply-howto">ボタンを押すとLINEが開きます。<br>講座名の入ったメッセージを、そのまま送信してください。</p>
       <p class="apply-note">お申し込み内容を確認でき次第、ご連絡いたします（月3名限定）</p>
-      <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" class="apply-line">LINEで申し込む・相談する</a>
       <ol class="apply-flow">
-        <li><b>1</b>フォーム送信</li>
+        <li><b>1</b>LINEで送信</li>
         <li><b>2</b>遅くとも翌日までにご連絡</li>
         <li><b>3</b>日程決定・お振込</li>
         <li><b>4</b>講座当日</li>
@@ -228,7 +233,7 @@
 <!-- LESSON FIXED BAR -->
 <div class="lesson-bar">
   <a href="../courses.html" class="lesson-bar-back">← 戻る</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="lesson-bar-apply">お申し込みはこちら</a>
+  <a href="https://line.me/R/oaMessage/@dls2613o/?%E4%BD%93%E8%B3%AA%E6%94%B9%E5%96%84%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AB%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%81%AE%E7%84%A1%E6%96%99%E7%9B%B8%E8%AB%87%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%97%E3%81%BE%E3%81%99" target="_blank" class="lesson-bar-apply line">LINEで申し込む</a>
 </div>
 </body>
 </html>

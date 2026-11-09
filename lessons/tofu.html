@@ -75,6 +75,11 @@
     .apply-flow li { display: flex; align-items: center; gap: 4px; }
     .apply-flow li:not(:last-child)::after { content: '→'; color: var(--orange); margin-left: 4px; }
     .apply-flow b { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--orange); color: #fff; font-size: .68rem; }
+    .apply-btn.line { background: #06c755; box-shadow: 0 4px 20px rgba(6,199,85,.35); }
+    .apply-btn.line:hover { box-shadow: 0 8px 28px rgba(6,199,85,.4); }
+    .apply-howto { margin-top: 12px; font-size: .84rem; color: var(--dark); line-height: 1.7; }
+    .lesson-bar-apply.line { background: #06c755; }
+    .lesson-bar-apply.line:hover { background: #05a948; }
     .apply-note { margin-top: 14px; font-size: .84rem; color: var(--gray); }
     .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gray); font-size: .84rem; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
     .back-link:hover { color: var(--orange); border-color: var(--orange); }
@@ -216,11 +221,11 @@
 
     <div class="apply-wrap">
       <p class="apply-ttl">この講座に申し込む</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="apply-btn">お申し込みはこちら</a>
+      <a href="https://line.me/R/oaMessage/@dls2613o/?%E8%B1%86%E8%85%90%E8%AC%9B%E5%BA%A7%E3%81%AB%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99" target="_blank" class="apply-btn line">LINEで申し込む</a>
+      <p class="apply-howto">ボタンを押すとLINEが開きます。<br>講座名の入ったメッセージを、そのまま送信してください。</p>
       <p class="apply-note">お申し込み内容を確認でき次第、ご連絡いたします</p>
-      <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" class="apply-line">LINEで申し込む・相談する</a>
       <ol class="apply-flow">
-        <li><b>1</b>フォーム送信</li>
+        <li><b>1</b>LINEで送信</li>
         <li><b>2</b>遅くとも翌日までにご連絡</li>
         <li><b>3</b>日程決定・お振込</li>
         <li><b>4</b>講座当日</li>
@@ -241,7 +246,7 @@
 <!-- LESSON FIXED BAR -->
 <div class="lesson-bar">
   <a href="../courses.html" class="lesson-bar-back">← 戻る</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYHYv6CW7ucUKdbS3UjDvMeYYyFGiJJQQWOcAWS1mwu5y4Og/viewform" target="_blank" class="lesson-bar-apply">お申し込みはこちら</a>
+  <a href="https://line.me/R/oaMessage/@dls2613o/?%E8%B1%86%E8%85%90%E8%AC%9B%E5%BA%A7%E3%81%AB%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99" target="_blank" class="lesson-bar-apply line">LINEで申し込む</a>
 </div>
 </body>
 </html>
