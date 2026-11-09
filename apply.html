@@ -407,7 +407,7 @@
   <!-- STEP 3 -->
   <section class="apply-group" id="step3">
     <div class="sec-label">Step 3</div>
-    <h2 class="sec-ttl">お名前など</h2>
+    <h2 class="sec-ttl">お名前を入力してください</h2>
     <div class="detail-card" style="border-color:var(--border)">
       <div class="field">
         <label for="name">お名前<span class="req">必須</span></label>
@@ -589,6 +589,8 @@
       if (!c.solo) {
         h += '<div class="field"><label for="people-' + id + '">人数</label><select id="people-' + id + '" data-key="people">' +
           [1, 2, 3, 4, 5, 6].map(function (n) { return '<option value="' + n + '"' + (st.people == n ? ' selected' : '') + '>' + n + '名</option>'; }).join('') + '</select></div>';
+        h += '<div class="field" data-companion' + (st.people > 1 ? '' : ' hidden') + '><label for="with-' + id + '">ご一緒に参加される方のお名前<span class="opt">任意</span></label>' +
+          '<input type="text" id="with-' + id + '" data-key="with" placeholder="例）佐藤 由美、田中 恵" value="' + esc(st.with || '') + '"></div>';
       }
       if (c.modes.length > 1) {
         h += '<div class="field"><div class="field-lbl">受講方法</div><div class="choices">' +
@@ -609,6 +611,7 @@
       lines.push((c.label ? c.label + 'のご希望日：' : '日にち：') + (st.date ? jpDate(st.date) : '未選択'));
       lines.push(c.time ? '時間：' + c.time : 'ご希望の時間帯：' + (st.slot || '未選択'));
       if (!c.solo) lines.push('人数：' + st.people + '名');
+      if (!c.solo && st.people > 1 && st.with && st.with.trim()) lines.push('ご一緒の方：' + st.with.trim());
       lines.push('受講方法：' + st.mode);
     });
     lines.push('');
@@ -620,15 +623,16 @@
     return lines.join('\n');
   }
 
+  /* 足りない項目を [メッセージ, 移動先の要素] の形で返す */
   function missing() {
     var m = [];
-    if (!selected.length) m.push('講座を選んでください');
+    if (!selected.length) m.push(['講座を選んでください', document.getElementById('step1')]);
     selected.forEach(function (id) {
-      var c = byId(id), st = state[id];
-      if (!st.date) m.push(c.name + 'の日にちを選んでください');
-      if (!c.time && !st.slot) m.push(c.name + 'の時間帯を選んでください');
+      var c = byId(id), st = state[id], card = document.querySelector('.detail-card[data-id="' + id + '"]');
+      if (!st.date) m.push([c.name + 'の日にちを選んでください', card]);
+      if (!c.time && !st.slot) m.push([c.name + 'の時間帯を選んでください', card]);
     });
-    if (!document.getElementById('name').value.trim()) m.push('お名前を入力してください');
+    if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', document.getElementById('name')]);
     return m;
   }
 
@@ -662,15 +666,29 @@
     var st = state[card.getAttribute('data-id')], t = e.target;
     if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
     else if (t.name) st[t.name.split('-')[0]] = t.value;
+    if (t.getAttribute('data-key') === 'people') card.querySelector('[data-companion]').hidden = +t.value < 2;
     update();
+  });
+  document.getElementById('details').addEventListener('input', function (e) {
+    var card = e.target.closest('.detail-card');
+    if (card && e.target.getAttribute('data-key') === 'with') { state[card.getAttribute('data-id')].with = e.target.value; update(); }
   });
   document.getElementById('addMore').addEventListener('click', function () {
     document.getElementById('step1').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+  document.getElementById('barBtn').addEventListener('click', function (e) {
+    if (missing().length) return;   // 足りないときは STEP 4 へ移動して確認してもらう
+    e.preventDefault(); document.getElementById('sendBtn').click();
+  });
   ['name', 'note'].forEach(function (id) { document.getElementById(id).addEventListener('input', update); });
   document.getElementById('sendBtn').addEventListener('click', function (e) {
     var m = missing();
-    if (m.length) { e.preventDefault(); document.getElementById('sendMsg').textContent = m[0]; }
+    if (!m.length) return;
+    e.preventDefault();
+    document.getElementById('sendMsg').textContent = m[0][0];
+    alert(m[0][0]);
+    m[0][1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (m[0][1].id === 'name') setTimeout(function () { m[0][1].focus(); }, 400);
   });
 
   /* 講座ページから来たとき（apply.html?c=amazake）はその講座を選んだ状態にする */
