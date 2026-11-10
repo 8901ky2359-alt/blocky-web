@@ -250,6 +250,12 @@
     .mode { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
     .mode-tag { display: inline-block; font-size: .7rem; font-weight: 700; line-height: 1; padding: 4px 7px; background: #fff4ec; color: var(--orange2); border-radius: 3px; }
     .mode-tag.onsite { background: #f1ede8; color: var(--gray); }
+    .course-thumb { flex-shrink: 0; width: 76px; height: 76px; object-fit: cover; border-radius: 4px; background: var(--cream); }
+    .course-btn > .course-info { flex: 1; min-width: 0; }
+    .course-photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; display: block; background: var(--cream); }
+    .confirm-course { display: flex; gap: 12px; align-items: center; text-align: left; }
+    .confirm-course img { width: 96px; height: 72px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+    .confirm-course strong { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; }
     .pick { flex-shrink: 0; min-width: 76px; text-align: center; font-size: .8rem; font-weight: 700; padding: 9px 10px; border: 2px solid var(--orange); color: var(--orange); border-radius: 4px; line-height: 1.2; }
     .course-btn[aria-pressed="true"] .pick { background: var(--orange); color: #fff; }
 
@@ -377,9 +383,9 @@
   </a>
   <nav class="hdr-nav">
     <a href="courses.html">講座一覧</a>
-    <a href="about.html">プロフィール</a>
-    <a href="about.html#voice">受講生の声</a>
-    <a href="about.html#faq">よくある質問</a>
+    <a href="index.html#profile">プロフィール</a>
+    <a href="index.html#voice">受講生の声</a>
+    <a href="index.html#faq">よくある質問</a>
   </nav>
   <button class="hamburger" id="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
@@ -390,9 +396,9 @@
 <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 <div class="mobile-nav-panel" id="mobileNav">
   <a href="courses.html">講座一覧</a>
-  <a href="about.html">プロフィール</a>
-  <a href="about.html#voice">受講生の声</a>
-  <a href="about.html#faq">よくある質問</a>
+  <a href="index.html#profile">プロフィール</a>
+  <a href="index.html#voice">受講生の声</a>
+  <a href="index.html#faq">よくある質問</a>
   <a href="apply.html" class="mnav-cta">お申し込みはこちら</a>
 </div>
 
@@ -457,6 +463,7 @@
     <div class="sec-label">Step 3</div>
     <h2 class="sec-ttl">内容を確認して、LINEで送信</h2>
     <div class="send-box">
+      <div class="confirm-course" id="confirmCourse"></div>
       <div class="preview-lbl">お申し込み内容（このままLINEに入力されます）</div>
       <div class="preview" id="preview"></div>
       <a href="https://line.me/R/ti/p/@dls2613o" target="_blank" rel="noopener" class="send-btn" id="sendBtn" aria-disabled="true">LINEで申し込む</a>
@@ -536,17 +543,17 @@
 <script>
   /* 講座データ。time が null の講座は「ご希望の時間帯」を選んでもらう */
   var COURSES = [
-    { id: 'amazake',   group: '単発講座', name: '甘酒講座',         sub: '単発講座・¥4,000',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
-    { id: 'shiromiso', group: '単発講座', name: '白みそ講座',       sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
-    { id: 'tofu',      group: '単発講座', name: '豆腐講座',         sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面'] },
-    { id: 'anko',      group: '単発講座', name: '発酵あんこ講座',   sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
-    { id: 'kimchi',    group: '単発講座', name: 'キムチ講座',       sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
-    { id: 'nukazuke',  group: '単発講座', name: 'ぬか漬け講座',     sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
-    { id: 'cafe',      group: '単発講座', name: 'おうちCafe',       sub: '単発講座・¥2,100',   time: '11:00〜13:00（約2時間）', modes: ['対面', 'オンライン'] },
-    { id: 'personal',  group: '継続レッスン・養成講座', name: '体質改善パーソナルレッスン', sub: '継続レッスン・まずは無料相談', label: '無料相談', time: null, modes: ['対面', 'オンライン'], solo: true },
-    { id: 'yousei',    group: '継続レッスン・養成講座', name: '腸活マイスター養成講座', sub: '養成講座・まずは無料説明会', label: '説明会', time: null, modes: ['対面', 'オンライン'] },
-    { id: 'umeboshi',  group: '季節限定講座（開催時期が限られています）', name: '梅干し講座', sub: '季節限定・毎年7月・¥7,300〜', time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'], months: [7] },
-    { id: 'miso',      group: '季節限定講座（開催時期が限られています）', name: 'お味噌仕込み講座', sub: '季節限定・1〜3月', time: '約3時間半（開始時間はご連絡時にご案内します）', modes: ['対面', 'オンライン'], months: [1, 2, 3] }
+    { id: 'amazake', img: 'images/amazake.jpg',   group: '単発講座', name: '甘酒講座',         sub: '単発講座・¥4,000',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'shiromiso', img: 'images/shiro-miso.jpg', group: '単発講座', name: '白みそ講座',       sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'tofu', img: 'images/tofu.jpg',      group: '単発講座', name: '豆腐講座',         sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面'] },
+    { id: 'anko', img: 'images/anko.jpg',      group: '単発講座', name: '発酵あんこ講座',   sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'kimchi', img: 'images/kimchi.jpg',    group: '単発講座', name: 'キムチ講座',       sub: '単発講座・¥4,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'nukazuke', img: 'images/nukazuke.jpg',  group: '単発講座', name: 'ぬか漬け講座',     sub: '単発講座・¥5,800',   time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'] },
+    { id: 'cafe', img: 'images/lunchi.jpg',      group: '単発講座', name: 'おうちCafe',       sub: '単発講座・¥2,100',   time: '11:00〜13:00（約2時間）', modes: ['対面', 'オンライン'] },
+    { id: 'personal', img: 'images/personal.jpg',  group: '継続レッスン・養成講座', name: '体質改善パーソナルレッスン', sub: '継続レッスン・まずは無料相談', label: '無料相談', time: null, modes: ['対面', 'オンライン'], solo: true },
+    { id: 'yousei', img: 'images/Meister.jpg',    group: '継続レッスン・養成講座', name: '腸活マイスター養成講座', sub: '養成講座・まずは無料説明会', label: '説明会', time: null, modes: ['対面', 'オンライン'] },
+    { id: 'umeboshi', img: 'images/umeboshi.jpg',  group: '季節限定講座（開催時期が限られています）', name: '梅干し講座', sub: '季節限定・毎年7月・¥7,300〜', time: '10:30〜13:30（約3時間）', modes: ['対面', 'オンライン'], months: [7] },
+    { id: 'miso', img: 'images/gentei.jpg',      group: '季節限定講座（開催時期が限られています）', name: 'お味噌仕込み講座', sub: '季節限定・1〜3月', time: '約3時間半（開始時間はご連絡時にご案内します）', modes: ['対面', 'オンライン'], months: [1, 2, 3] }
   ];
 
   /* 開催日が決まった講座はここに日付を追加すると、日付の選択肢になる
@@ -589,7 +596,8 @@
         ? '<span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span>'
         : '<span class="mode-tag onsite">🏠 対面のみ</span>';
       html += '<button type="button" class="course-btn" data-id="' + c.id + '" aria-pressed="' + on + '">' +
-        '<span>' + c.name + '<small>' + c.sub + '</small><span class="mode">' + tags + '</span></span>' +
+        '<img class="course-thumb" src="' + c.img + '" alt="" loading="lazy">' +
+        '<span class="course-info">' + c.name + '<small>' + c.sub + '</small><span class="mode">' + tags + '</span></span>' +
         '<span class="pick">' + (on ? '✓ 選択中' : '選ぶ') + '</span></button>';
     });
     document.getElementById('courseList').innerHTML = html + '</div>';
@@ -601,6 +609,7 @@
     var id = current, c = byId(id), st = state[id], r = dateRange(c), h = '';
     var dateLbl = c.label ? c.label + 'のご希望日' : 'ご希望の日付';
     h += '<div class="detail-card" data-id="' + id + '">';
+    h += '<img class="course-photo" src="' + c.img + '" alt="' + c.name + '">';
     h += '<h3 class="course-ttl">' + c.name + (c.label ? '（' + c.label + '）' : '') + '<small>' + c.sub + '</small></h3>';
     h += c.time
       ? '<div class="time-banner">この講座は、<strong>' + c.time + '</strong>です。下から日付を選択してください。</div>'
@@ -715,6 +724,8 @@
     var text = buildMessage(), m = missing(), btn = document.getElementById('sendBtn'), bar = document.getElementById('barBtn');
     var url = 'https://line.me/R/oaMessage/' + LINE_ID + '/?' + encodeURIComponent(text);
     document.getElementById('preview').textContent = text;
+    var cc = document.getElementById('confirmCourse'), cur = current && byId(current);
+    cc.innerHTML = cur ? '<img src="' + cur.img + '" alt=""><div>お申し込みの講座<br><strong>' + cur.name + (cur.label ? '（' + cur.label + '）' : '') + '</strong></div>' : '';
     btn.href = url;
     btn.setAttribute('aria-disabled', m.length ? 'true' : 'false');
     document.getElementById('sendMsg').textContent = '';
