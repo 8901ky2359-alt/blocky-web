@@ -302,7 +302,14 @@
     .choice input:focus-visible + span { outline: 2px solid var(--orange); outline-offset: 2px; }
     .add-more { align-self: stretch; background: #fff; border: 2px dashed var(--orange); color: var(--orange); font: 700 .95rem/1 'Noto Sans JP',sans-serif; padding: 16px; cursor: pointer; }
 
-    /* ── SEND (STEP 4) ── */
+    .time-banner { background: #fff4ec; border-radius: 6px; padding: 14px 16px; font-size: .95rem; line-height: 1.7; }
+    .time-banner strong { display: block; font-size: 1.25rem; color: var(--orange2); }
+    .rechoose { align-self: flex-start; background: none; border: none; color: var(--gray); font: 500 .85rem/1 'Noto Sans JP',sans-serif; text-decoration: underline; cursor: pointer; padding: 4px 0; }
+    .detail-card h3.course-ttl { font-family: 'Noto Serif JP', serif; font-size: 1.25rem; font-weight: 700; line-height: 1.4; }
+    .detail-card h3.course-ttl small { display: block; font: 500 .8rem/1.5 'Noto Sans JP',sans-serif; color: var(--gray); margin-top: 2px; }
+    .sub-ttl { font-size: 1rem; font-weight: 700; border-left: 4px solid var(--orange); padding-left: 10px; margin-top: 6px; }
+
+    /* ── SEND (STEP 3) ── */
     .send-box { background: var(--white); border: 2px solid var(--border); padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: stretch; text-align: center; }
     .send-btn { display: block; background: var(--line); color: #fff; text-decoration: none; padding: 20px; font: 700 1.15rem/1 'Noto Sans JP',sans-serif; border-radius: 6px; box-shadow: 0 4px 16px rgba(6,199,85,.3); }
     .send-btn[aria-disabled="true"] { background: #b7c4bc; box-shadow: none; }
@@ -393,15 +400,14 @@
 <div class="page-hero">
   <div class="page-hero-en">Application</div>
   <h1>お申し込み</h1>
-  <p class="page-hero-sub">4つのステップで、かんたんにお申し込みできます。<br>最後に、選んだ内容が入ったLINEが開きます。</p>
+  <p class="page-hero-sub">3つのステップで、かんたんにお申し込みできます。<br>最後に、選んだ内容が入ったLINEが開きます。</p>
 </div>
 
 <!-- PROGRESS -->
 <ol class="progress" id="progress">
   <li data-s="1"><b>1</b>講座</li>
-  <li data-s="2"><b>2</b>日にち</li>
-  <li data-s="3"><b>3</b>お名前</li>
-  <li data-s="4"><b>4</b>確認・送信</li>
+  <li data-s="2"><b>2</b>日付・お名前</li>
+  <li data-s="3"><b>3</b>確認・送信</li>
 </ol>
 
 <!-- FLOW -->
@@ -409,9 +415,9 @@
   <div class="sec-label">Flow</div>
   <h2 class="sec-ttl">お申し込みの流れ</h2>
   <ol class="flow-steps">
-    <li class="flow-step"><div class="flow-num">1</div><div><strong>講座を選ぶ</strong><span>受けたい講座をタップします。いくつでも選べます</span></div></li>
-    <li class="flow-step"><div class="flow-num">2</div><div><strong>日にち・人数を選ぶ</strong><span>講座の時間は決まっています。ご希望の日にちと人数を選んでください</span></div></li>
-    <li class="flow-step"><div class="flow-num">3</div><div><strong>LINEで送信</strong><span>「LINEで申し込む」を押すと、選んだ内容が入ったLINEが開きます。そのまま送信してください</span></div></li>
+    <li class="flow-step"><div class="flow-num">1</div><div><strong>講座を選ぶ</strong><span>受けたい講座をタップします</span></div></li>
+    <li class="flow-step"><div class="flow-num">2</div><div><strong>日付・お名前を入力</strong><span>講座の時間は決まっています。第1〜第3希望の日付とお名前を入力してください</span></div></li>
+    <li class="flow-step"><div class="flow-num">3</div><div><strong>LINEで送信</strong><span>「LINEで申し込む」を押すと、入力した内容が入ったLINEが開きます。そのまま送信してください</span></div></li>
     <li class="flow-step"><div class="flow-num">4</div><div><strong>確認のご連絡でお申し込み完了</strong><span>遅くとも翌日までにLINEでご連絡し、振込先をご案内します</span></div></li>
   </ol>
 </section>
@@ -422,26 +428,17 @@
   <section class="apply-group" id="step1">
     <div class="sec-label">Step 1</div>
     <h2 class="sec-ttl">受けたい講座を選んでください</h2>
-    <p class="step-lead">タップすると選択されます。いくつでも選べます。<br>選んだら、いちばん下の「次へ」を押してください。</p>
+    <p class="step-lead">講座をタップすると、日付を選ぶ画面に進みます。</p>
     <div id="courseList"></div>
-    <p class="picked-note" id="pickedNote" hidden></p>
-    <button type="button" class="step-next" data-next>次へ（日にちを選ぶ）→</button>
   </section>
 
   <!-- STEP 2 -->
   <section class="apply-group" id="step2">
     <div class="sec-label">Step 2</div>
-    <h2 class="sec-ttl">日にち・人数を選んでください</h2>
-    <div id="details"><div class="detail-empty">STEP 1 で講座を選ぶと、ここに表示されます</div></div>
-    <button type="button" class="add-more" id="addMore" hidden>＋ ほかの講座も追加する</button>
-    <button type="button" class="step-next" data-next>次へ（お名前を入力）→</button>
-  </section>
-
-  <!-- STEP 3 -->
-  <section class="apply-group" id="step3">
-    <div class="sec-label">Step 3</div>
-    <h2 class="sec-ttl">お名前を入力してください</h2>
+    <h2 class="sec-ttl">日付とお名前を入力してください</h2>
+    <div id="details"></div>
     <div class="detail-card" style="border-color:var(--border)">
+      <div class="sub-ttl">お名前</div>
       <div class="field">
         <label for="name">お名前<span class="req">必須</span></label>
         <input type="text" id="name" autocomplete="name" placeholder="例）藤本 花子">
@@ -452,11 +449,12 @@
       </div>
     </div>
     <button type="button" class="step-next" data-next>次へ（内容を確認）→</button>
+    <button type="button" class="rechoose" id="rechoose">← 講座を選び直す</button>
   </section>
 
-  <!-- STEP 4 -->
-  <section class="apply-group" id="step4">
-    <div class="sec-label">Step 4</div>
+  <!-- STEP 3 -->
+  <section class="apply-group" id="step3">
+    <div class="sec-label">Step 3</div>
     <h2 class="sec-ttl">内容を確認して、LINEで送信</h2>
     <div class="send-box">
       <div class="preview-lbl">お申し込み内容（このままLINEに入力されます）</div>
@@ -558,8 +556,8 @@
 
   var LINE_ID = '@dls2613o';
   var WEEK = ['日', '月', '火', '水', '木', '金', '土'];
-  var selected = [];   // 選ばれた講座 id（選んだ順）
-  var state = {};      // id -> { date, slot, people, mode }
+  var current = '';    // 選ばれた講座 id（1回に1講座）
+  var state = {};      // id -> { dates, slot, people, with, mode }
 
   function byId(id) { for (var i = 0; i < COURSES.length; i++) if (COURSES[i].id === id) return COURSES[i]; }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
@@ -586,7 +584,7 @@
     var html = '', last = '';
     COURSES.forEach(function (c) {
       if (c.group !== last) { if (last) html += '</div>'; html += '<div class="apply-group-ttl">' + c.group + '</div><div class="course-btns">'; last = c.group; }
-      var on = selected.indexOf(c.id) >= 0;
+      var on = current === c.id;
       var tags = c.modes.length > 1
         ? '<span class="mode-tag">💻 オンライン</span><span class="mode-tag">🏠 対面</span>'
         : '<span class="mode-tag onsite">🏠 対面のみ</span>';
@@ -599,66 +597,61 @@
 
   function renderDetails() {
     var box = document.getElementById('details');
-    document.getElementById('addMore').hidden = selected.length === 0;
-    if (!selected.length) { box.innerHTML = '<div class="detail-empty">STEP 1 で講座を選ぶと、ここに表示されます</div>'; return; }
-    box.innerHTML = selected.map(function (id) {
-      var c = byId(id), st = state[id], r = dateRange(c), h = '';
-      var dateLbl = c.label ? c.label + 'のご希望日' : 'ご希望の日にち';
-      h += '<div class="detail-card" data-id="' + id + '"><div class="detail-head"><h3>' + c.name + (c.label ? '（' + c.label + '）' : '') + '<small>' + c.sub + '</small></h3>' +
-           '<button type="button" class="detail-remove" data-remove="' + id + '">✕ 取り消す</button></div>';
-      /* 希望日は第1〜第3希望まで。第1希望だけ必須 */
-      h += '<div class="field"><div class="field-lbl">' + dateLbl + '</div>' +
-        (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '') + '</div>';
-      for (var i = 0; i < 3; i++) {
-        var v = st.dates[i], lbl = '第' + (i + 1) + '希望' + (i === 0 ? '<span class="req">必須</span>' : '<span class="opt">任意</span>');
-        if (SCHEDULE[id] && SCHEDULE[id].length) {
-          h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
-            '<select id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '"><option value="">選んでください</option>' +
-            SCHEDULE[id].map(function (d) { return '<option value="' + d + '"' + (v === d ? ' selected' : '') + '>' + jpDate(d) + '</option>'; }).join('') + '</select></div>';
-        } else {
-          h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
-            '<div class="date-wrap' + (v ? ' has-value' : '') + '"><input type="date" id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + v + '">' +
-            '<span class="date-ph">📅 タップして日にちを選ぶ</span></div>' +
-            '<span class="date-picked">' + (v ? '選択中：' + jpDate(v) : '') + '</span></div>';
-        }
-      }
-      if (c.time) {
-        h += '<div class="field"><div class="field-lbl">時間</div><div class="fixed-time">' + c.time + '</div></div>';
+    if (!current) { box.innerHTML = ''; return; }
+    var id = current, c = byId(id), st = state[id], r = dateRange(c), h = '';
+    var dateLbl = c.label ? c.label + 'のご希望日' : 'ご希望の日付';
+    h += '<div class="detail-card" data-id="' + id + '">';
+    h += '<h3 class="course-ttl">' + c.name + (c.label ? '（' + c.label + '）' : '') + '<small>' + c.sub + '</small></h3>';
+    h += c.time
+      ? '<div class="time-banner">この講座は、<strong>' + c.time + '</strong>です。下から日付を選択してください。</div>'
+      : '<div class="time-banner">時間はご希望をうかがって決めます。下から日付と時間帯を選択してください。</div>';
+
+    /* 希望日は第1〜第3希望まで。第1希望だけ必須 */
+    h += '<div class="sub-ttl">' + dateLbl + '</div>' +
+      (c.months ? '<span class="hint">' + jpDate(r.min) + '〜' + jpDate(r.max) + ' の間でお選びください</span>' : '');
+    for (var i = 0; i < 3; i++) {
+      var v = st.dates[i], lbl = '第' + (i + 1) + '希望' + (i === 0 ? '<span class="req">必須</span>' : '<span class="opt">任意</span>');
+      if (SCHEDULE[id] && SCHEDULE[id].length) {
+        h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
+          '<select id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '"><option value="">選んでください</option>' +
+          SCHEDULE[id].map(function (d) { return '<option value="' + d + '"' + (v === d ? ' selected' : '') + '>' + jpDate(d) + '</option>'; }).join('') + '</select></div>';
       } else {
-        h += '<div class="field"><div class="field-lbl">ご希望の時間帯<span class="req">必須</span></div><div class="choices">' +
-          ['午前', '午後', '夕方以降'].map(function (v) { return '<label class="choice"><input type="radio" name="slot-' + id + '" value="' + v + '"' + (st.slot === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></div>';
+        h += '<div class="field date-field"><label for="date-' + id + '-' + i + '">' + lbl + '</label>' +
+          '<div class="date-wrap' + (v ? ' has-value' : '') + '"><input type="date" id="date-' + id + '-' + i + '" data-key="date" data-i="' + i + '" min="' + r.min + '"' + (r.max ? ' max="' + r.max + '"' : '') + ' value="' + v + '">' +
+          '<span class="date-ph">📅 タップして日付を選ぶ</span></div>' +
+          '<span class="date-picked">' + (v ? '選択中：' + jpDate(v) : '') + '</span></div>';
       }
-      if (!c.solo) {
-        h += '<div class="field"><label for="people-' + id + '">人数</label><select id="people-' + id + '" data-key="people">' +
-          [1, 2, 3, 4, 5, 6].map(function (n) { return '<option value="' + n + '"' + (st.people == n ? ' selected' : '') + '>' + n + '名</option>'; }).join('') + '</select></div>';
-        h += '<div class="field" data-companion' + (st.people > 1 ? '' : ' hidden') + '><label for="with-' + id + '">ご一緒に参加される方のお名前<span class="opt">任意</span></label>' +
-          '<input type="text" id="with-' + id + '" data-key="with" placeholder="例）佐藤 由美、田中 恵" value="' + esc(st.with || '') + '"></div>';
-      }
-      if (c.modes.length > 1) {
-        h += '<div class="field"><div class="field-lbl">受講方法</div><div class="choices">' +
-          c.modes.map(function (m) { return '<label class="choice"><input type="radio" name="mode-' + id + '" value="' + m + '"' + (st.mode === m ? ' checked' : '') + '><span>' + (m === '対面' ? '🏠 ' : '💻 ') + m + '</span></label>'; }).join('') + '</div></div>';
-      } else {
-        h += '<div class="field"><div class="field-lbl">受講方法</div><div class="fixed-time">🏠 対面のみ</div></div>';
-      }
-      return h + '</div>';
-    }).join('');
+    }
+    if (!c.time) {
+      h += '<div class="field"><div class="field-lbl">ご希望の時間帯<span class="req">必須</span></div><div class="choices">' +
+        ['午前', '午後', '夕方以降'].map(function (v) { return '<label class="choice"><input type="radio" name="slot-' + id + '" value="' + v + '"' + (st.slot === v ? ' checked' : '') + '><span>' + v + '</span></label>'; }).join('') + '</div></div>';
+    }
+    if (!c.solo) {
+      h += '<div class="field"><label for="people-' + id + '">人数</label><select id="people-' + id + '" data-key="people">' +
+        [1, 2, 3, 4, 5, 6].map(function (n) { return '<option value="' + n + '"' + (st.people == n ? ' selected' : '') + '>' + n + '名</option>'; }).join('') + '</select></div>';
+      h += '<div class="field" data-companion' + (st.people > 1 ? '' : ' hidden') + '><label for="with-' + id + '">ご一緒に参加される方のお名前<span class="opt">任意</span></label>' +
+        '<input type="text" id="with-' + id + '" data-key="with" placeholder="例）佐藤 由美、田中 恵" value="' + esc(st.with || '') + '"></div>';
+    }
+    if (c.modes.length > 1) {
+      h += '<div class="field"><div class="field-lbl">受講方法</div><div class="choices">' +
+        c.modes.map(function (m) { return '<label class="choice"><input type="radio" name="mode-' + id + '" value="' + m + '"' + (st.mode === m ? ' checked' : '') + '><span>' + (m === '対面' ? '🏠 ' : '💻 ') + m + '</span></label>'; }).join('') + '</div></div>';
+    } else {
+      h += '<div class="field"><div class="field-lbl">受講方法</div><div class="fixed-time">🏠 対面のみ</div></div>';
+    }
+    box.innerHTML = h + '</div>';
   }
 
   function buildMessage() {
-    var lines = ['【お申し込み】'];
-    selected.forEach(function (id) {
-      var c = byId(id), st = state[id];
-      lines.push('');
-      lines.push('■' + c.name + (c.label ? '（' + c.label + '）' : ''));
-      st.dates.forEach(function (d, i) {
-        if (d || i === 0) lines.push('第' + (i + 1) + '希望：' + (d ? jpDate(d) : '未選択'));
-      });
-      lines.push(c.time ? '時間：' + c.time : 'ご希望の時間帯：' + (st.slot || '未選択'));
-      if (!c.solo) lines.push('人数：' + st.people + '名');
-      if (!c.solo && st.people > 1 && st.with && st.with.trim()) lines.push('ご一緒の方：' + st.with.trim());
-      lines.push('受講方法：' + st.mode);
+    if (!current) return '';
+    var c = byId(current), st = state[current];
+    var lines = ['【お申し込み】' + c.name + (c.label ? '（' + c.label + '）' : '')];
+    lines.push(c.time ? '開催時刻：' + c.time : 'ご希望の時間帯：' + (st.slot || '未選択'));
+    st.dates.forEach(function (d, i) {
+      if (d || i === 0) lines.push('第' + (i + 1) + '希望：' + (d ? jpDate(d) : '未選択'));
     });
-    lines.push('');
+    if (!c.solo) lines.push('人数：' + st.people + '名');
+    if (!c.solo && st.people > 1 && st.with && st.with.trim()) lines.push('ご一緒の方：' + st.with.trim());
+    lines.push('受講方法：' + st.mode);
     lines.push('お名前：' + document.getElementById('name').value.trim());
     var note = document.getElementById('note').value.trim();
     if (note) lines.push('ご質問・ご要望：' + note);
@@ -670,16 +663,13 @@
   /* 足りない項目を [メッセージ, ステップ番号, 移動先の要素] の形で返す */
   function missing() {
     var m = [];
-    if (!selected.length) m.push(['講座を選んでください', 1, document.getElementById('courseList')]);
-    selected.forEach(function (id) {
-      var c = byId(id), st = state[id], card = document.querySelector('.detail-card[data-id="' + id + '"]');
-      var cardDate = card && card.querySelector('.date-field');
-      if (!st.dates[0]) m.push([c.name + 'の第1希望の日にちを選んでください', 2, cardDate || card]);
-      var filled = st.dates.filter(Boolean);
-      if (filled.some(function (d, i) { return filled.indexOf(d) !== i; })) m.push([c.name + 'の希望日が同じ日になっています。別の日を選んでください', 2, cardDate || card]);
-      if (!c.time && !st.slot) m.push([c.name + 'の時間帯を選んでください', 2, card]);
-    });
-    if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', 3, document.getElementById('name')]);
+    if (!current) return [['講座を選んでください', 1, document.getElementById('courseList')]];
+    var c = byId(current), st = state[current], firstDate = document.querySelector('.date-field');
+    if (!st.dates[0]) m.push(['第1希望の日付を選んでください', 2, firstDate]);
+    var filled = st.dates.filter(Boolean);
+    if (filled.some(function (d, i) { return filled.indexOf(d) !== i; })) m.push(['希望日が同じ日になっています。別の日を選んでください', 2, firstDate]);
+    if (!c.time && !st.slot) m.push(['ご希望の時間帯を選んでください', 2, document.querySelector('.choice')]);
+    if (!document.getElementById('name').value.trim()) m.push(['お名前を入力してください', 2, document.getElementById('name')]);
     return m;
   }
 
@@ -687,23 +677,25 @@
   var step = 1;
   function go(n, how) {
     step = n;
-    for (var i = 1; i <= 4; i++) document.getElementById('step' + i).hidden = i !== n;
+    for (var i = 1; i <= 3; i++) document.getElementById('step' + i).hidden = i !== n;
     document.getElementById('flow').hidden = n !== 1;
-    document.getElementById('cancel').hidden = n !== 4;
+    document.getElementById('cancel').hidden = n !== 3;
     [].forEach.call(document.querySelectorAll('#progress li'), function (li) {
       var k = +li.getAttribute('data-s');
       li.className = k === n ? 'now' : (k < n ? 'done' : '');
     });
-    var back = document.getElementById('barBack');
-    back.textContent = n === 1 ? '← トップに戻る' : '← 戻る';
+    document.getElementById('barBack').textContent = n === 1 ? '← トップに戻る' : '← 戻る';
     if (how === 'push') history.pushState({ step: n }, '', '#step' + n);
     if (how === 'replace') history.replaceState({ step: n }, '', location.pathname + location.search + '#step' + n);
     update();
     /* 最初の表示はページの先頭、ステップを進めたときはステップの頭（進み具合の帯の下）を表示する */
     if (how === 'replace') window.scrollTo(0, 0);
-    else window.scrollTo(0, document.getElementById('progress').offsetTop - 64);
+    else {
+      var hero = document.querySelector('.page-hero');   // 進み具合の帯は貼り付くので、その上の見出しの下端を基準にする
+      window.scrollTo(0, hero.offsetTop + hero.offsetHeight - 64);
+    }
   }
-  /* 今のステップに足りない項目があればお知らせして、その場所へ移動する */
+  /* 足りない項目があればお知らせして、その場所へ移動する */
   function blockedHere(upTo) {
     var m = missing().filter(function (x) { return x[1] <= upTo; });
     if (!m.length) return false;
@@ -711,6 +703,7 @@
     if (m[0][1] !== step) go(m[0][1], 'push');
     var el = m[0][2];
     setTimeout(function () {
+      if (!el) return;
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       if (el.id === 'name') el.focus();
     }, 300);
@@ -725,32 +718,27 @@
     btn.href = url;
     btn.setAttribute('aria-disabled', m.length ? 'true' : 'false');
     document.getElementById('sendMsg').textContent = '';
-    var note = document.getElementById('pickedNote');
-    note.hidden = !selected.length;
-    note.textContent = '選択中：' + selected.map(function (id) { return byId(id).name; }).join('、');
-    /* 画面下の右ボタン：STEP 1〜3 は「次へ」、STEP 4 は LINE を開くリンク */
-    if (step === 4) { bar.href = url; bar.target = '_blank'; bar.className = 'fixed-bar-apply line'; bar.textContent = 'LINEで申し込む'; }
+    /* 画面下の右ボタン：STEP 2 は「次へ」、STEP 3 は LINE を開くリンク。STEP 1 は講座をタップして進む */
+    bar.hidden = step === 1;
+    if (step === 3) { bar.href = url; bar.target = '_blank'; bar.className = 'fixed-bar-apply line'; bar.textContent = 'LINEで申し込む'; }
     else { bar.href = '#'; bar.removeAttribute('target'); bar.className = 'fixed-bar-apply next'; bar.textContent = '次へ →'; }
   }
 
-  function toggle(id, on) {
-    var i = selected.indexOf(id);
-    if (on && i < 0) { selected.push(id); if (!state[id]) state[id] = { dates: ['', '', ''], slot: '', people: 1, mode: byId(id).modes[0] }; }
-    if (!on && i >= 0) selected.splice(i, 1);
+  /* 講座を選ぶ（1回に1講座）。前に入力した日付などは講座ごとに覚えておく */
+  function choose(id) {
+    current = id;
+    if (!state[id]) state[id] = { dates: ['', '', ''], slot: '', people: 1, mode: byId(id).modes[0] };
     renderList(); renderDetails(); update();
   }
 
   document.getElementById('courseList').addEventListener('click', function (e) {
     var b = e.target.closest('.course-btn'); if (!b) return;
-    var id = b.getAttribute('data-id'), on = selected.indexOf(id) < 0;
-    toggle(id, on);
-  });
-  document.getElementById('details').addEventListener('click', function (e) {
-    var r = e.target.closest('[data-remove]'); if (r) toggle(r.getAttribute('data-remove'), false);
+    choose(b.getAttribute('data-id'));
+    go(2, 'push');
   });
   document.getElementById('details').addEventListener('change', function (e) {
     var card = e.target.closest('.detail-card'); if (!card) return;
-    var st = state[card.getAttribute('data-id')], t = e.target;
+    var st = state[current], t = e.target;
     if (t.getAttribute('data-key') === 'date') st.dates[+t.getAttribute('data-i')] = t.value;
     else if (t.getAttribute('data-key')) st[t.getAttribute('data-key')] = t.value;
     else if (t.name) st[t.name.split('-')[0]] = t.value;
@@ -762,35 +750,34 @@
     update();
   });
   document.getElementById('details').addEventListener('input', function (e) {
-    var card = e.target.closest('.detail-card');
-    if (card && e.target.getAttribute('data-key') === 'with') { state[card.getAttribute('data-id')].with = e.target.value; update(); }
+    if (e.target.getAttribute('data-key') === 'with') { state[current].with = e.target.value; update(); }
   });
-  document.getElementById('addMore').addEventListener('click', function () { go(1, 'push'); });
+  document.getElementById('rechoose').addEventListener('click', function () { go(1, 'push'); });
   [].forEach.call(document.querySelectorAll('[data-next]'), function (b) { b.addEventListener('click', next); });
   document.getElementById('barBtn').addEventListener('click', function (e) {
-    if (step < 4) { e.preventDefault(); next(); return; }
-    if (blockedHere(3)) e.preventDefault();
+    if (step < 3) { e.preventDefault(); next(); return; }
+    if (blockedHere(2)) e.preventDefault();
   });
   document.getElementById('barBack').addEventListener('click', function () {
     if (step === 1) location.href = 'index.html'; else history.back();
   });
   window.addEventListener('popstate', function (e) {
     var n = (e.state && e.state.step) || +((location.hash.match(/step(\d)/) || [])[1]) || 1;
+    if (n > 1 && !current) n = 1;
     go(n);
   });
   ['name', 'note'].forEach(function (id) { document.getElementById(id).addEventListener('input', update); });
   document.getElementById('sendBtn').addEventListener('click', function (e) {
-    if (blockedHere(3)) e.preventDefault();
+    if (blockedHere(2)) e.preventDefault();
   });
 
-  /* 講座ページから来たとき（apply.html?c=amazake）はその講座を選んだ状態にする */
+  /* 講座ページから来たとき（apply.html?c=amazake）はその講座を選んだ状態で STEP 2 から始める */
   var pre = (location.search.match(/[?&]c=([a-z]+)/) || [])[1];
-  renderList();
   if (pre && byId(pre)) {
-    toggle(pre, true);
+    choose(pre);
     history.replaceState({ step: 1 }, '', location.pathname + location.search + '#step1');
     go(2, 'push');   // 戻るで講座選びに戻れるよう、STEP 1 を履歴に残しておく
-  } else { renderDetails(); go(1, 'replace'); }
+  } else { renderList(); go(1, 'replace'); }
 </script>
 <script>
   var hamburger = document.getElementById('hamburger');
